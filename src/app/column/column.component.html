@@ -1,0 +1,16 @@
+<ng-container *ngFor="let item of data.items">
+  <ng-container [ngSwitch]="item.type">
+
+    <ng-template ngSwitchCase="timeline">
+      <app-timeline [data]="item.data"></app-timeline>
+    </ng-template>
+
+    <ng-template ngSwitchCase="text">
+      <app-text [data]="item.data"></app-text>
+    </ng-template>
+
+  </ng-container>
+</ng-container>
+
+
+<button mat-button color="primary" (click)="onAddRow()">Add Row</button>
