@@ -26,22 +26,14 @@ export class TimelineComponent {
     private readonly dialog: MatDialog,
   ) { }
 
-  async onAddItem(data = null) {
-    if (!data) {
-      data = await this.dialog.open(TimelineFormComponent, { data: null }).afterClosed().toPromise();
-    }
-
-    this.data.items.push(data);
-  }
-
-  async onEditItem(index: number) {
-    const data = this.data.items[index];
+  async onEdit(index: number) {
+    const data = this.data;
     const edited = await this.dialog.open(TimelineFormComponent, { data }).afterClosed().toPromise();
 
     this.setItemData(index, edited);
   }
 
   setItemData(index: number, data) {
-    this.data.items[index] = data;
+    this.data = data;
   }
 }

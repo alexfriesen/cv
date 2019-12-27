@@ -1,4 +1,4 @@
-<h4>{{ data.headline }}</h4>
+<h4 *ngIf="data.headline">{{ data.headline }}</h4>
 <ul>
   <li class="timespan" *ngFor="let item of data.items; let i = index">
     <div>
@@ -9,7 +9,8 @@
       {{ item.description }}
     </div>
   </li>
-  <li class="timespan">
-    <button mat-button color="primary" (click)="onAddItem()">Add Element</button>
-  </li>
 </ul>
+
+<div>
+  <button mat-button color="primary" (click)="onEdit()">Edit</button>
+</div>

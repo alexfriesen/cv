@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { Timeline } from '../timeline/timeline.component';
-
 export enum ColumnItemType {
   Text = 'text',
   Timeline = 'timeline'
 }
 
-export class ColumnItem {
+export class ColumnItem<T> {
   constructor(
-    public type = ColumnItemType.Timeline,
-    public data = new Timeline()
+    public type = ColumnItemType.Text,
+    public data: T = {} as T
   ) { }
 }
 
@@ -33,10 +31,10 @@ export class ColumnService {
     this.columns.next([...columns, new Column()]);
   }
 
-  addColumnItem(columnIndex: number, data?: ColumnItem) {
+  addColumnItem<T>(columnIndex: number, data?: ColumnItem<T>) {
     const columns = this.columns.getValue();
 
-    columns[columnIndex].items.push(data || new ColumnItem());
+    columns[columnIndex].items.push(data || new ColumnItem<Text>());
 
     this.columns.next(columns);
   }

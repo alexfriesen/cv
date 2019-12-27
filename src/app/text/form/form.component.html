@@ -1,11 +1,8 @@
-<h1 mat-dialog-title>Edit Timeline</h1>
+<h1 mat-dialog-title>Edit Text</h1>
 
 <form mat-dialog-content [formGroup]="form">
   <mat-form-field>
-    <input matInput type="text" placeholder="Time" formControlName="time" cdkFocusInitial>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Name" formControlName="name">
+    <input matInput type="text" placeholder="Headline" formControlName="headline" cdkFocusInitial>
   </mat-form-field>
   <mat-form-field>
     <textarea matInput placeholder="description" formControlName="description" #autosize="cdkTextareaAutosize"

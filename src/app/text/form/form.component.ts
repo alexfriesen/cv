@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./form.component.scss']
 })
 export class TextFormComponent {
-  editingRowIndex = -1;
   form: FormGroup;
 
   constructor(
@@ -16,15 +15,13 @@ export class TextFormComponent {
   ) {
     if (!data) {
       data = {
-        name: '',
+        headline: '',
         description: '',
-        time: new Date().getFullYear()
       };
     }
     this.form = new FormGroup({
-      name: new FormControl(data.name),
+      headline: new FormControl(data.headline),
       description: new FormControl(data.description),
-      time: new FormControl(data.time)
     });
   }
 

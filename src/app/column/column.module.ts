@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TextModule } from '../text/text.module';
 import { TimelineModule } from '../timeline/timeline.module';
 import { ColumnComponent } from './column.component';
+import { ColumnItemDialogComponent } from './item/dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -15,10 +16,14 @@ import { ColumnComponent } from './column.component';
     TextModule,
   ],
   declarations: [
-    ColumnComponent
+    ColumnComponent,
+    ColumnItemDialogComponent,
   ],
   exports: [
-    ColumnComponent
+    ColumnComponent,
   ],
+  entryComponents: [
+    ColumnItemDialogComponent,
+  ]
 })
 export class ColumnModule { }

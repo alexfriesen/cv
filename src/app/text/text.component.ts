@@ -6,7 +6,7 @@ export class Text {
 
   constructor(
     public headline = '',
-    public text = ''
+    public description = ''
   ) { }
 
 }
@@ -20,18 +20,19 @@ export class TextComponent {
   @Input()
   data = new Text();
 
-  editingRowIndex = -1;
-
   constructor(
     private readonly dialog: MatDialog,
   ) { }
 
 
-  async onEditHeadline(headline) {
-    this.data.headline = headline;
+  async onEdit(index: number) {
+    const data = this.data;
+    const edited = await this.dialog.open(TextFormComponent, { data }).afterClosed().toPromise();
+
+    this.setItemData(index, edited);
   }
 
-  async onEditText(text) {
-    this.data.text = text;
+  setItemData(index: number, data) {
+    this.data = data;
   }
 }
