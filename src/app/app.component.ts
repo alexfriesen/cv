@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ColumnService } from './column/column.service';
+import { DataService, CVData } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +9,18 @@ import { ColumnService } from './column/column.service';
 })
 export class AppComponent {
 
-  columns = [];
+  data: CVData;
 
   constructor(
-    private readonly columnService: ColumnService
+    private readonly dataService: DataService
   ) {
-    this.columnService.columns.subscribe(data => {
-      this.columns = data;
+    this.dataService.data.subscribe(data => {
+      this.data = data;
     });
   }
 
   ngOnInit() {
-    if (!this.columnService.columns.value.length) {
-      this.columnService.addColumn();
-    }
+    this.dataService.reset()
   }
 
 }

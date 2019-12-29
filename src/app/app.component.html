@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">CV Pimp</mat-toolbar>
 
-<div class="page">
-  <app-column *ngFor="let column of columns; let i = index" [data]="column" [index]="i"></app-column>
+<div class="wrapper">
+
+  <div class="page" *ngIf="data">
+    <app-column *ngFor="let column of data.columns; let i = index" [data]="column" [index]="i"></app-column>
+  </div>
+
 </div>

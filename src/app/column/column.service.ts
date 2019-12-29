@@ -1,41 +1,40 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
-export enum ColumnItemType {
-  Text = 'text',
-  Timeline = 'timeline'
-}
-
-export class ColumnItem<T> {
-  constructor(
-    public type = ColumnItemType.Text,
-    public data: T = {} as T
-  ) { }
-}
-
-export class Column {
-  constructor(
-    public items = [new ColumnItem()]
-  ) { }
-}
+import { DataService } from '../data.service';
+import { Column, ColumnItem } from '../models/column';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColumnService {
-  columns = new BehaviorSubject<Column[]>([]);
 
-  addColumn() {
-    const columns = this.columns.getValue();
+  columns: Column[] = []
 
-    this.columns.next([...columns, new Column()]);
+  constructor(
+    private readonly dataService: DataService
+  ) {
+    this.dataService.data.subscribe(data => {
+      this.columns = data.columns
+    })
   }
 
-  addColumnItem<T>(columnIndex: number, data?: ColumnItem<T>) {
-    const columns = this.columns.getValue();
+  updateColumn(index: number, column: Column) {
+    const data = this.dataService.data.getValue();
 
-    columns[columnIndex].items.push(data || new ColumnItem<Text>());
+    data.columns[index] = column;
 
-    this.columns.next(columns);
+    this.dataService.data.next(data);
+  }
+
+  addColumn() {
+    this.updateColumn(this.columns.length, new Column());
+  }
+
+  addColumnItem<T>(index: number, data?: ColumnItem<T>) {
+    const column = this.columns[index];
+
+    column.items.push(data || new ColumnItem<Text>());
+
+    this.updateColumn(index, column);
   }
 }

@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { ColumnService, Column, ColumnItemType, ColumnItem } from './column.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ColumnItemDialogComponent } from './item/dialog/dialog.component';
+
+import { Column, ColumnItemType, ColumnItem } from '../models/column';
+import { ColumnService } from './column.service';
 import { Timeline } from '../timeline/timeline.component';
+import { ColumnItemDialogComponent } from './item/dialog/dialog.component';
 
 @Component({
   selector: 'app-column',

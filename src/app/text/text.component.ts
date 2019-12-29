@@ -24,7 +24,6 @@ export class TextComponent {
     private readonly dialog: MatDialog,
   ) { }
 
-
   async onEdit(index: number) {
     const data = this.data;
     const edited = await this.dialog.open(TextFormComponent, { data }).afterClosed().toPromise();
