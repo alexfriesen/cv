@@ -28,6 +28,9 @@
   background-color: #ffffff;
 }
 
+.toolbar {
+  justify-content: space-between;
+}
 
 @media print {
   mat-toolbar {

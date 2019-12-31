@@ -1,4 +1,20 @@
-<mat-toolbar color="primary">CV Pimp</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar">
+  <span>CV Pimp</span>
+
+  <div class="actions">
+    <button mat-icon-button (click)="fileupload.click()">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    
+    <button mat-icon-button (click)="onDownload()">
+      <mat-icon>cloud_download</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="onPrint()">
+      <mat-icon>print</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 
 <div class="wrapper">
 
@@ -7,3 +23,5 @@
   </div>
 
 </div>
+
+<input class="hidden" #fileupload type="file" (change)="onUpload($event)">

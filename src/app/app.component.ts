@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { saveAs } from 'file-saver';
 
 import { DataService, CVData } from './data.service';
 
@@ -21,6 +22,43 @@ export class AppComponent {
 
   ngOnInit() {
     this.dataService.reset()
+  }
+
+  async onUpload(event) {
+    if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files.length) {
+      const [file] = event.target.files;
+
+      const content = await this.readFileContent(file)
+      this.dataService.import(content.data);
+    }
+  }
+
+  onDownload() {
+    const content = this.dataService.export()
+
+    const blob = new Blob([JSON.stringify(content)], { type: 'text/plain' });
+
+    saveAs(blob, `cv.json`)
+  }
+
+  onPrint() {
+    window.print();
+  }
+
+  private readFileContent(file: File): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.onerror = reject;
+      fileReader.onabort = reject;
+
+      fileReader.onload = (e: any) => {
+        var result = JSON.parse(e.target.result);
+        resolve(result)
+      }
+
+      fileReader.readAsText(file)
+    });
   }
 
 }
