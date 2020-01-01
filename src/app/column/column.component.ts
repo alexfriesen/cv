@@ -9,7 +9,8 @@ import { ColumnItemDialogComponent } from './item/dialog/dialog.component';
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
-  styleUrls: ['./column.component.scss']
+  styleUrls: ['./column.component.scss'],
+  providers: [ColumnService]
 })
 export class ColumnComponent {
   @Input()
@@ -22,6 +23,10 @@ export class ColumnComponent {
     private readonly dialog: MatDialog,
     private readonly columnService: ColumnService
   ) { }
+
+  ngOnInit() {
+    this.columnService.index = this.index
+  }
 
   async onAddRow() {
     const options = await this.dialog.open(ColumnItemDialogComponent).afterClosed().toPromise()
@@ -38,6 +43,6 @@ export class ColumnComponent {
       default:
         break;
     }
-    this.columnService.addColumnItem(this.index, data);
+    this.columnService.addColumnItem(data);
   }
 }

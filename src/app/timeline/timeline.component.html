@@ -1,10 +1,12 @@
 <h4 *ngIf="data.headline">{{ data.headline }}</h4>
 <ul>
-  <li class="timespan" *ngFor="let item of data.items; let i = index">
+  <li class="timespan" *ngFor="let item of data.items">
     <div>
       {{ item.time }}
     </div>
-    <h5>{{ item.name }}</h5>
+    <h5>
+      {{ item.name }}
+    </h5>
     <div>
       {{ item.description }}
     </div>

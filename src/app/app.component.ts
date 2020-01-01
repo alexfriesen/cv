@@ -25,12 +25,15 @@ export class AppComponent {
   }
 
   async onUpload(event) {
-    if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files.length) {
-      const [file] = event.target.files;
-
-      const content = await this.readFileContent(file)
-      this.dataService.import(content.data);
+    const target = event.target as HTMLInputElement
+    if (!target.files || !target.files.length) {
+      return alert('Import failed');
     }
+
+    const [file] = event.target.files;
+
+    const content = await this.readFileContent(file)
+    this.dataService.import(content.data);
   }
 
   onDownload() {

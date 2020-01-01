@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { TimelineFormComponent } from './form/form.component';
+import { ColumnService } from '../column/column.service';
 
 export class Timeline {
 
@@ -18,22 +20,24 @@ export class Timeline {
 })
 export class TimelineComponent {
   @Input()
-  data = new Timeline();
+  rowIndex: number;
 
-  editingRowIndex = -1;
+  @Input()
+  data = new Timeline();
 
   constructor(
     private readonly dialog: MatDialog,
+    private readonly columnService: ColumnService,
   ) { }
 
-  async onEdit(index: number) {
+  async onEdit() {
     const data = this.data;
     const edited = await this.dialog.open(TimelineFormComponent, { data }).afterClosed().toPromise();
 
-    this.setItemData(index, edited);
+    this.setItemData(edited);
   }
 
-  setItemData(index: number, data) {
-    this.data = data;
+  setItemData(data) {
+    this.columnService.updateColumnItem(this.rowIndex, data);
   }
 }

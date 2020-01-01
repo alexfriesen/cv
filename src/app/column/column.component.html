@@ -1,12 +1,12 @@
-<ng-container *ngFor="let item of data.items">
+<ng-container *ngFor="let item of data.items; let i = index">
   <ng-container [ngSwitch]="item.type">
 
     <ng-template ngSwitchCase="timeline">
-      <app-timeline [data]="item.data"></app-timeline>
+      <app-timeline [rowIndex]="i" [data]="item.data"></app-timeline>
     </ng-template>
 
     <ng-template ngSwitchCase="text">
-      <app-text [data]="item.data"></app-text>
+      <app-text [rowIndex]="i" [data]="item.data"></app-text>
     </ng-template>
 
   </ng-container>

@@ -2,15 +2,21 @@
   <span>CV Pimp</span>
 
   <div class="actions">
-    <button mat-icon-button (click)="fileupload.click()">
-      <mat-icon>cloud_upload</mat-icon>
-    </button>
-    
-    <button mat-icon-button (click)="onDownload()">
-      <mat-icon>cloud_download</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="importExportMenu" matTooltip="Import/Export Data">
+      <mat-icon>import_export</mat-icon>
     </button>
 
-    <button mat-icon-button (click)="onPrint()">
+    <mat-menu #importExportMenu="matMenu">
+      <button mat-menu-item (click)="fileupload.click()">
+        Import Data
+      </button>
+      
+      <button mat-menu-item (click)="onDownload()">
+        Export Data
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button (click)="onPrint()" matTooltip="Print...">
       <mat-icon>print</mat-icon>
     </button>
   </div>

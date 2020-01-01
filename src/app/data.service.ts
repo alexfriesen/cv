@@ -8,7 +8,6 @@ export class CVData {
   columns: Column[]
   constructor(data) {
     this.columns = data.columns || []
-
   }
 }
 
@@ -17,6 +16,13 @@ export class CVData {
 })
 export class DataService {
   data = new BehaviorSubject<CVData>(null);
+
+  
+  addColumn() {
+    const data = this.data.getValue();
+    data.columns[data.columns.length] = new Column();
+    this.data.next(data);
+  }
 
   reset() {
     const defaultData = new CVData({
