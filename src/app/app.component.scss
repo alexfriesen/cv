@@ -21,6 +21,17 @@
 }
 
 .page {
+  --highlightColor: #3f51b5;
+
+  --headlineColor: #666;
+  --headlineFontSize: 1.5em;
+  --headlineFontType: 'Arial', 'Tahoma', 'Century Gothic', 'Lucida Sans';
+  --headlineBorderType: dashed;
+
+  --textColor: #666;
+  --textFontSize: .9em;
+  --textFontType: 'Arial', 'Tahoma', 'Century Gothic', 'Lucida Sans';
+
   display: flex;
   width: 80vw;
   max-width: 21.0cm;

@@ -1,13 +1,13 @@
 <h4 *ngIf="data.headline">{{ data.headline }}</h4>
 <ul>
   <li class="timespan" *ngFor="let item of data.items">
-    <div>
+    <div class="text">
       {{ item.time }}
     </div>
     <h5>
       {{ item.name }}
     </h5>
-    <div>
+    <div class="text">
       {{ item.description }}
     </div>
   </li>

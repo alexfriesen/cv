@@ -9,33 +9,15 @@
   }
 }
 
-
-ul {
-  padding-left: 20px;
+h4 {
+  font-family: var(--headlineFontType);
+  font-size: var(--headlineFontSize);
+  color: var(--headlineColor);
+  border-bottom: 2px var(--headlineBorderType) var(--headlineColor);
 }
 
-ul li.timespan {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border-left: brown solid 1px;
-
-  padding: .2em 1em;
-  list-style: none;
-
-  h5 {
-    margin: 0;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 3px;
-    left: -5px;
-
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background-color: brown;
-  }
+p {
+  font-family: var(--textFontType);
+  font-size: var(--textFontSize);
+  color: var(--textColor);
 }

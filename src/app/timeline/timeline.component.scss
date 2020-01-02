@@ -9,16 +9,31 @@
   }
 }
 
+h4 {
+  font-family: var(--headlineFontType);
+  font-size: var(--headlineFontSize);
+  color: var(--headlineColor);
+  border-bottom: 2px var(--headlineBorderType) var(--headlineColor);
+}
+
+p,
+.text {
+  font-family: var(--textFontType);
+  font-size: var(--textFontSize);
+  color: var(--textColor);
+}
 
 ul {
   padding-left: 20px;
 }
 
+$bubbleSize: 8px;
+
 ul li.timespan {
   position: relative;
   display: flex;
   flex-direction: column;
-  border-left: brown solid 1px;
+  border-left: 2px solid var(--highlightColor);
 
   padding: .2em 1em;
   list-style: none;
@@ -30,12 +45,12 @@ ul li.timespan {
   &::before {
     content: "";
     position: absolute;
-    top: 8px;
-    left: -5px;
+    top: $bubbleSize;
+    left: -(($bubbleSize / 2) + 1);
 
-    width: 9px;
-    height: 9px;
+    width: $bubbleSize;
+    height: $bubbleSize;
     border-radius: 50%;
-    background-color: brown;
+    background-color: var(--highlightColor);
   }
 }

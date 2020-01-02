@@ -15,13 +15,11 @@ export class AppComponent {
   constructor(
     private readonly dataService: DataService
   ) {
+    this.dataService.restore()
     this.dataService.data.subscribe(data => {
       this.data = data;
+      this.dataService.saveDraft();
     });
-  }
-
-  ngOnInit() {
-    this.dataService.reset()
   }
 
   async onUpload(event) {
@@ -33,7 +31,7 @@ export class AppComponent {
     const [file] = event.target.files;
 
     const content = await this.readFileContent(file)
-    this.dataService.import(content.data);
+    this.dataService.import(content);
   }
 
   onDownload() {

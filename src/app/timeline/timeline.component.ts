@@ -5,12 +5,10 @@ import { TimelineFormComponent } from './form/form.component';
 import { ColumnService } from '../column/column.service';
 
 export class Timeline {
-
   constructor(
     public headline = '',
     public items = []
   ) { }
-
 }
 
 @Component({
