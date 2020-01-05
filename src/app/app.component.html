@@ -2,6 +2,11 @@
   <span>CV Pimp</span>
 
   <div class="actions">
+
+    <button mat-icon-button (click)="sidebarOpen = !sidebarOpen" matTooltip="Appearance Options">
+      <mat-icon>format_paint</mat-icon>
+    </button>
+
     <button mat-icon-button [matMenuTriggerFor]="importExportMenu" matTooltip="Import/Export Data">
       <mat-icon>import_export</mat-icon>
     </button>
@@ -10,24 +15,37 @@
       <button mat-menu-item (click)="fileupload.click()">
         Import Data
       </button>
-      
+
       <button mat-menu-item (click)="onDownload()">
         Export Data
+      </button>
+
+      <button mat-menu-item (click)="onReset()">
+        Reset Data
       </button>
     </mat-menu>
 
     <button mat-icon-button (click)="onPrint()" matTooltip="Print...">
       <mat-icon>print</mat-icon>
     </button>
+
   </div>
 </mat-toolbar>
 
-<div class="wrapper">
+<mat-drawer-container class="container">
 
-  <div class="page" *ngIf="data">
-    <app-column *ngFor="let column of data.columns; let i = index" [data]="column" [index]="i"></app-column>
-  </div>
+  <mat-drawer class="hidden-print" mode="side" position="end" [opened]="sidebarOpen">
+    <app-theme-form>
+    </app-theme-form>
+  </mat-drawer>
 
-</div>
+  <mat-drawer-content class="wrapper">
+    <div class="page" *ngIf="data">
+      <app-column *ngFor="let column of data.columns; let i = index" [data]="column" [index]="i"></app-column>
+    </div>
+  </mat-drawer-content>
+
+
+</mat-drawer-container>
 
 <input class="hidden" #fileupload type="file" (change)="onUpload($event)">

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { saveAs } from 'file-saver';
 
 import { DataService, CVData } from './data.service';
+import { ThemeService } from './theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -12,25 +13,32 @@ export class AppComponent {
 
   data: CVData;
 
+  sidebarOpen = false;
+
   constructor(
-    private readonly dataService: DataService
+    private readonly dataService: DataService,
+    private readonly themeService: ThemeService,
   ) {
-    this.dataService.restore()
+    this.dataService.restore();
     this.dataService.data.subscribe(data => {
       this.data = data;
       this.dataService.saveDraft();
     });
   }
 
+  ngAfterViewInit() {
+    this.themeService.applyTheme();
+  }
+
   async onUpload(event) {
-    const target = event.target as HTMLInputElement
+    const target = event.target as HTMLInputElement;
     if (!target.files || !target.files.length) {
       return alert('Import failed');
     }
 
     const [file] = event.target.files;
 
-    const content = await this.readFileContent(file)
+    const content = await this.readFileContent(file);
     this.dataService.import(content);
   }
 
@@ -39,11 +47,15 @@ export class AppComponent {
 
     const blob = new Blob([JSON.stringify(content)], { type: 'text/plain' });
 
-    saveAs(blob, `cv.json`)
+    saveAs(blob, `cv.json`);
   }
 
   onPrint() {
     window.print();
+  }
+
+  onReset() {
+    this.dataService.reset();
   }
 
   private readFileContent(file: File): Promise<any> {
@@ -54,11 +66,11 @@ export class AppComponent {
       fileReader.onabort = reject;
 
       fileReader.onload = (e: any) => {
-        var result = JSON.parse(e.target.result);
-        resolve(result)
+        const result = JSON.parse(e.target.result);
+        resolve(result);
       }
 
-      fileReader.readAsText(file)
+      fileReader.readAsText(file);
     });
   }
 

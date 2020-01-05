@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { ThemeModule } from './theme/theme.module';
 import { TimelineModule } from './timeline/timeline.module';
 import { ColumnModule } from './column/column.module';
 import { TextModule } from './text/text.module';
@@ -18,6 +19,7 @@ import { TextModule } from './text/text.module';
     ReactiveFormsModule,
 
     SharedModule,
+    ThemeModule,
     ColumnModule,
     TimelineModule,
     TextModule,

@@ -6,16 +6,16 @@ import { Column, ColumnItem } from '../models/column';
 @Injectable()
 export class ColumnService {
 
-  index: number
+  index: number;
 
   get columns() {
-    const data = this.dataService.data.getValue();
-    return data.columns || []
+    const data = this.dataService.getData();
+    return data.columns || [];
   }
 
   get column() {
-    const data = this.dataService.data.getValue();
-    return data.columns[this.index]
+    const data = this.dataService.getData();
+    return data.columns[this.index];
   }
 
   constructor(
@@ -23,11 +23,11 @@ export class ColumnService {
   ) { }
 
   updateColumn(column: Column) {
-    const data = this.dataService.data.getValue();
+    const data = this.dataService.getData();
 
     data.columns[this.index] = column;
 
-    this.dataService.data.next(data);
+    this.dataService.setData(data);
   }
 
   addColumnItem<T>(data?: ColumnItem<T>) {
@@ -39,11 +39,8 @@ export class ColumnService {
   }
 
   updateColumnItem(rowIndex: number, data: any) {
-    console.log(this.index, rowIndex, data)
     const column = this.column;
     column.items[rowIndex].data = data;
-
-    console.log(column)
 
     this.updateColumn(column);
   }

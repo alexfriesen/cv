@@ -25,24 +25,26 @@ export class ColumnComponent {
   ) { }
 
   ngOnInit() {
-    this.columnService.index = this.index
+    this.columnService.index = this.index;
   }
 
   async onAddRow() {
-    const options = await this.dialog.open(ColumnItemDialogComponent).afterClosed().toPromise()
-    let data
+    const options = await this.dialog.open(ColumnItemDialogComponent).afterClosed().toPromise();
+    let data;
+
     switch (options.type) {
       case ColumnItemType.Text:
-        data = new ColumnItem<Text>(options.type, new Text())
+        data = new ColumnItem<Text>(options.type, new Text());
         break;
 
       case ColumnItemType.Timeline:
-        data = new ColumnItem<Timeline>(options.type, new Timeline())
+        data = new ColumnItem<Timeline>(options.type, new Timeline());
         break;
 
       default:
         break;
     }
+
     this.columnService.addColumnItem(data);
   }
 }

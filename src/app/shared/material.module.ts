@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
   ],
   exports: [
+    MatSidenavModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatSelectModule,

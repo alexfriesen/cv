@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { Column } from './models/column';
 import { environment } from 'src/environments/environment';
+import { Column } from './models/column';
+import { Theme } from './models/theme';
 
 export class CVData {
-  columns: Column[]
+
+  columns: Column[];
+  theme: Theme;
+
   constructor(data) {
-    this.columns = data.columns || []
+    this.columns = data.columns || [];
+    this.theme = new Theme(data.theme);
   }
+
 }
 
 @Injectable({
@@ -16,6 +22,14 @@ export class CVData {
 })
 export class DataService {
   data = new BehaviorSubject<CVData>(null);
+
+  setData(data: CVData) {
+    this.data.next(data);
+  }
+
+  getData() {
+    return this.data.getValue();
+  }
 
   restore() {
     try {
@@ -39,26 +53,26 @@ export class DataService {
   }
 
   addColumn() {
-    const data = this.data.getValue();
+    const data = this.getData();
     data.columns[data.columns.length] = new Column();
-    this.data.next(data);
+    this.setData(data);
   }
 
   reset() {
     const defaultData = new CVData({
       columns: [new Column()]
     });
-    this.data.next(defaultData);
+    this.setData(defaultData);
   }
 
   import(importData) {
     const data = new CVData(importData.data);
 
-    this.data.next(data);
+    this.setData(data);
   }
 
   export() {
-    const data = this.data.getValue();
+    const data = this.getData();
 
     const exportPayload = {
       version: environment.version,
