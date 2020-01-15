@@ -20,8 +20,8 @@
         Export Data
       </button>
 
-      <button mat-menu-item (click)="onReset()">
-        Reset Data
+      <button mat-menu-item (click)="onOpenTemplates()">
+        Templates
       </button>
     </mat-menu>
 
@@ -41,7 +41,7 @@
 
   <mat-drawer-content class="wrapper">
     <div class="page" *ngIf="data">
-      <app-column *ngFor="let column of data.columns; let i = index" [data]="column" [index]="i"></app-column>
+      <app-container [data]="data.container"></app-container>
     </div>
   </mat-drawer-content>
 

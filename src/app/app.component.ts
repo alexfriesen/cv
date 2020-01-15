@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
 
 import { DataService, CVData } from './data.service';
 import { ThemeService } from './theme/theme.service';
+import { TemplateDialogComponent } from './template/dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ export class AppComponent {
   sidebarOpen = false;
 
   constructor(
+    private readonly dialog: MatDialog,
     private readonly dataService: DataService,
     private readonly themeService: ThemeService,
   ) {
@@ -43,7 +46,7 @@ export class AppComponent {
   }
 
   onDownload() {
-    const content = this.dataService.export()
+    const content = this.dataService.export();
 
     const blob = new Blob([JSON.stringify(content)], { type: 'text/plain' });
 
@@ -58,6 +61,10 @@ export class AppComponent {
     this.dataService.reset();
   }
 
+  onOpenTemplates() {
+    this.dialog.open(TemplateDialogComponent);
+  }
+
   private readFileContent(file: File): Promise<any> {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -68,7 +75,7 @@ export class AppComponent {
       fileReader.onload = (e: any) => {
         const result = JSON.parse(e.target.result);
         resolve(result);
-      }
+      };
 
       fileReader.readAsText(file);
     });

@@ -1,0 +1,25 @@
+<ng-container *ngFor="let item of data.items; let i = index">
+  <ng-container [ngSwitch]="item.type">
+
+    <ng-template ngSwitchCase="image">
+      <app-image [rowIndex]="i" [data]="item.data"></app-image>
+    </ng-template>
+
+    <ng-template ngSwitchCase="timeline">
+      <app-timeline [rowIndex]="i" [data]="item.data"></app-timeline>
+    </ng-template>
+
+    <ng-template ngSwitchCase="text">
+      <app-text [rowIndex]="i" [data]="item.data"></app-text>
+    </ng-template>
+
+    <ng-template ngSwitchCase="container">
+      <app-container [rowIndex]="i" [data]="item.data"></app-container>
+    </ng-template>
+
+  </ng-container>
+</ng-container>
+
+<div class="actions hidden-print" *ngIf="data.alignment === 'column'">
+  <button mat-button color="primary" (click)="onAddItem()">Add Item</button>
+</div>

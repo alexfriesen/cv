@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Column } from './models/column';
+import { Container } from './models/container';
 import { Theme } from './models/theme';
 
 export class CVData {
 
-  columns: Column[];
-  theme: Theme;
+  theme = new Theme();
+  container = new Container();
 
-  constructor(data) {
-    this.columns = data.columns || [];
-    this.theme = new Theme(data.theme);
+  constructor(data?) {
+    if (data) {
+      this.theme = new Theme(data.theme);
+      this.container = new Container(data.container);
+    }
   }
 
 }
@@ -52,17 +54,8 @@ export class DataService {
     localStorage.setItem('draft', serializedData);
   }
 
-  addColumn() {
-    const data = this.getData();
-    data.columns[data.columns.length] = new Column();
-    this.setData(data);
-  }
-
   reset() {
-    const defaultData = new CVData({
-      columns: [new Column()]
-    });
-    this.setData(defaultData);
+    this.setData(new CVData());
   }
 
   import(importData) {

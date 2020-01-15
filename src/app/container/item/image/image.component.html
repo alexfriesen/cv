@@ -1,0 +1,9 @@
+<div class="wrapper" *ngIf="data?.image">
+  <img [class]="data?.style" alt="picture" [src]="image" />
+</div>
+
+<div class="tools hidden-print">
+  <button mat-icon-button color="accent" matTooltip="Edit" (click)="onEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

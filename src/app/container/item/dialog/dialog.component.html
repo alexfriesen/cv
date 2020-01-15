@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Add Item</h1>
+
+<form mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <mat-select placeholder="Choose" formControlName="type" cdkFocusInitial>
+      <mat-option value="text">Text Item</mat-option>
+      <mat-option value="image">Image Item</mat-option>
+      <mat-option value="timeline">Timeline Item</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
+</div>

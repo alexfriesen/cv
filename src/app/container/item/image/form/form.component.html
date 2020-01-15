@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Edit Image</h1>
+
+<form mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <mat-select placeholder="Choose" formControlName="style">
+      <mat-option value="">None</mat-option>
+      <mat-option value="circle">Round</mat-option>
+      <mat-option value="border">Corner</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <img *ngIf="form.value.image" [src]="image" alt="preview image" />
+  <button mat-button type="button" (click)="fileupload.click()">Upload Image</button>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
+</div>
+
+<input class="hidden" #fileupload type="file" (change)="onUpload($event)">

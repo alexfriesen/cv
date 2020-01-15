@@ -1,0 +1,39 @@
+:host {
+  position: relative;
+  display: block;
+
+  width: 100%;
+  min-height: 36px;
+
+  border: 1px dashed transparent;
+  border-radius: 4px;
+
+  &:focus,
+  &:hover {
+    border-color: #ccc;
+  }
+}
+
+.tools {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+h4 {
+  font-family: var(--headlineFontType);
+  font-weight: var(--headlineFontWeight);
+  font-size: var(--headlineFontSize);
+  color: var(--headlineColor);
+  border-bottom: 2px var(--headlineBorderType) var(--headlineColor);
+
+  margin-top: 0.4em;
+}
+
+p {
+  font-family: var(--textFontType);
+  font-size: var(--textFontSize);
+  color: var(--textColor);
+
+  white-space: pre-wrap;
+}

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Edit Text</h1>
+
+<form mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="headline" cdkFocusInitial>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="description" formControlName="description" #autosize="cdkTextareaAutosize"
+      cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
+    </textarea>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
+</div>
