@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { Text } from 'src/app/models/text';
 import { TextFormComponent } from './form/form.component';
 import { ContainerService } from '../../container.service';
 
