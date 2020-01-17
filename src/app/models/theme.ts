@@ -15,20 +15,21 @@ export class Theme {
   textFontWeight = '200';
 
   constructor(data?) {
-    if (data) {
-      this.highlightColor = data.highlightColor;
+    if (!data) return this;
 
-      this.headlineColor = data.headlineColor;
-      this.headlineFontType = data.headlineFontType;
-      this.headlineFontSize = data.headlineFontSize;
-      this.headlineFontWeight = data.headlineFontWeight;
+    this.highlightColor = data.highlightColor;
 
-      this.headlineBorderType = data.headlineBorderType;
+    this.headlineColor = data.headlineColor;
+    this.headlineFontType = data.headlineFontType;
+    this.headlineFontSize = data.headlineFontSize;
+    this.headlineFontWeight = data.headlineFontWeight;
 
-      this.textColor = data.textColor;
-      this.textFontType = data.textFontType;
-      this.textFontSize = data.textFontSize;
-      this.textFontWeight = data.textFontWeight;
-    }
+    this.headlineBorderType = data.headlineBorderType;
+
+    this.textColor = data.textColor;
+    this.textFontType = data.textFontType;
+    this.textFontSize = data.textFontSize;
+    this.textFontWeight = data.textFontWeight;
   }
+
 }

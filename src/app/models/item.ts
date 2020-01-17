@@ -1,5 +1,3 @@
-import nanoid from 'nanoid';
-
 export enum ItemType {
   Container = 'container',
 
@@ -9,7 +7,6 @@ export enum ItemType {
 }
 
 export class Item {
-  // id = nanoid();
 
   constructor(
     public type = ItemType.Text,

@@ -5,8 +5,15 @@ form {
   flex: 1 1 auto;
 }
 
-img {
-  position: relative;
+.wrapper {
+  margin: auto;
+
   max-width: 300px;
   max-height: 300px;
+}
+
+img {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
 }

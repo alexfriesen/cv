@@ -1,8 +1,13 @@
 export class Image {
 
-  constructor(
-    public style = 'circle',
-    public image: string = ''
-  ) { }
+  public style = 'circle';
+  public image = '';
+
+  constructor(data?) {
+    if (!data) return this;
+
+    this.style = data.style;
+    this.image = data.image;
+  }
 
 }

@@ -1,10 +1,8 @@
 import { Component, Input, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Text } from '../models/text';
-import { Timeline } from '../models/timeline';
 import { Container } from '../models/container';
-import { ItemType, Item } from '../models/item';
+import { ItemFactory } from '../models/item-factory';
 import { ContainerService } from './container.service';
 import { ContainerItemDialogComponent } from './item/dialog/dialog.component';
 
@@ -51,21 +49,8 @@ export class ContainerComponent {
 
   async onAddItem() {
     const options = await this.dialog.open(ContainerItemDialogComponent).afterClosed().toPromise();
-    let data;
 
-    switch (options.type) {
-      case ItemType.Text:
-        data = new Text('New Text');
-        break;
-
-      case ItemType.Timeline:
-        data = new Timeline('New Timeline');
-        break;
-
-      default:
-        break;
-    }
-
-    this.containerService.addItem(new Item(options.type, data));
+    const item = ItemFactory.prepare(options);
+    this.containerService.addItem(item);
   }
 }

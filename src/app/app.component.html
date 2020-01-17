@@ -4,7 +4,7 @@
   <div class="actions">
 
     <button mat-icon-button (click)="sidebarOpen = !sidebarOpen" matTooltip="Appearance Options">
-      <mat-icon>format_paint</mat-icon>
+      <mat-icon>palette</mat-icon>
     </button>
 
     <button mat-icon-button [matMenuTriggerFor]="importExportMenu" matTooltip="Import/Export Data">
@@ -13,15 +13,18 @@
 
     <mat-menu #importExportMenu="matMenu">
       <button mat-menu-item (click)="fileupload.click()">
+        <mat-icon>unarchive</mat-icon>
         Import Data
       </button>
 
       <button mat-menu-item (click)="onDownload()">
+        <mat-icon>archive</mat-icon>
         Export Data
       </button>
 
       <button mat-menu-item (click)="onOpenTemplates()">
-        Templates
+        <mat-icon>restore_page</mat-icon>
+        Use Template
       </button>
     </mat-menu>
 

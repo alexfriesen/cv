@@ -1,42 +1,33 @@
 import nanoid from 'nanoid';
 
-import { Item, ItemType } from './item';
+import { Item } from './item';
 
 export class Container {
   public id = nanoid();
 
-  public alignment = 'column';
   public size = 100;
+  public alignment = 'column';
 
   public items: Item[] = [];
 
   constructor(data?) {
-    if (data) {
-      if (data.id) {
-        this.id = data.id;
-      }
+    if (!data) return this;
 
-      if (data.size) {
-        this.size = data.size;
-      }
+    if (data.id) {
+      this.id = data.id;
+    }
 
-      if (data.alignment) {
-        this.alignment = data.alignment;
-      }
+    if (data.size) {
+      this.size = data.size;
+    }
 
-      if (data.items) {
-        this.items = data.items.map(item => {
-          switch (item.type) {
-            case ItemType.Container:
-              return new Item(item.type, new Container(item.data));
+    if (data.alignment) {
+      this.alignment = data.alignment;
+    }
 
-            default:
-              return new Item(item.type, item.data);
-          }
-        });
-      }
+    if (data.items) {
+      this.items = data.items || [];
     }
   }
-
 
 }

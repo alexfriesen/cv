@@ -5,22 +5,36 @@
     <input matInput type="text" placeholder="Title" formControlName="headline" cdkFocusInitial>
   </mat-form-field>
 
-  <div formArrayName="items" *ngFor="let form of itemsForm.controls; let i = index">
-    <div [formGroupName]="i">
-      <mat-form-field>
-        <input matInput type="text" placeholder="Time" formControlName="time">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="text" placeholder="Name" formControlName="name">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput placeholder="description" formControlName="description" #autosize="cdkTextareaAutosize"
-          cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
+
+  <div cdkDropList class="items" (cdkDropListDropped)="onDrop($event)" formArrayName="items">
+    <div cdkDrag cdkDragLockAxis="y" class="item" *ngFor="let form of itemsForm.controls; let i = index">
+
+      <div cdkDragHandle class="handle" matTooltip="Move">
+        <mat-icon>drag_indicator</mat-icon>
+      </div>
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Time" formControlName="time">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="description" formControlName="description" #autosize="cdkTextareaAutosize"
+            cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
         </textarea>
-      </mat-form-field>
+        </mat-form-field>
+      </div>
+      <button mat-icon-button matTooltip="Remove" (click)="onRemoveItem(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
+
   </div>
-  <button mat-button color="primary" (click)="onAddItem()">Add Element</button>
+  <button mat-button color="primary" (click)="onAddItem()">
+    <mat-icon>add_circle</mat-icon>
+    Add Item
+  </button>
 </form>
 
 <div mat-dialog-actions>

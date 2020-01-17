@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-timeline-form',
@@ -53,6 +54,25 @@ export class TimelineFormComponent {
       description: new FormControl(data.description),
       time: new FormControl(data.time)
     });
+  }
+
+  onRemoveItem(index: number) {
+    this.itemsForm.removeAt(index);
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    const from = event.previousIndex;
+    const to = event.currentIndex;
+
+    const dir = to > from ? 1 : -1;
+
+
+    const temp = this.itemsForm.at(from);
+    for (let i = from; i * dir < to * dir; i = i + dir) {
+      const current = this.itemsForm.at(i + dir);
+      this.itemsForm.setControl(i, current);
+    }
+    this.itemsForm.setControl(to, temp);
   }
 
 }

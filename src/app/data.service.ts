@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Container } from './models/container';
 import { Theme } from './models/theme';
+import { Container } from './models/container';
+import { ContainerFactory } from './models/container-factory';
 
 export class CVData {
 
@@ -11,10 +13,10 @@ export class CVData {
   container = new Container();
 
   constructor(data?) {
-    if (data) {
-      this.theme = new Theme(data.theme);
-      this.container = new Container(data.container);
-    }
+    if (!data) return this;
+
+    this.theme = new Theme(data.theme);
+    this.container = ContainerFactory.prepare(data.container);
   }
 
 }
@@ -24,6 +26,10 @@ export class CVData {
 })
 export class DataService {
   data = new BehaviorSubject<CVData>(null);
+
+  constructor(
+    private readonly http: HttpClient,
+  ) { }
 
   setData(data: CVData) {
     this.data.next(data);
@@ -38,7 +44,7 @@ export class DataService {
       const draft = this.getDraft();
       this.import(draft);
     } catch (error) {
-      this.reset();
+      this.importTemplate();
     }
   }
 
@@ -58,12 +64,6 @@ export class DataService {
     this.setData(new CVData());
   }
 
-  import(importData) {
-    const data = new CVData(importData.data);
-
-    this.setData(data);
-  }
-
   export() {
     const data = this.getData();
 
@@ -73,5 +73,16 @@ export class DataService {
     };
 
     return exportPayload;
+  }
+
+  import(importData) {
+    const data = new CVData(importData.data);
+
+    this.setData(data);
+  }
+
+  async importTemplate(name = 'simple') {
+    const templateData = await this.http.get(`assets/templates/${name}.json`).toPromise();
+    this.import(templateData);
   }
 }

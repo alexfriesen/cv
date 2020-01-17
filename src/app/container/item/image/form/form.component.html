@@ -9,7 +9,9 @@
     </mat-select>
   </mat-form-field>
 
-  <img *ngIf="form.value.image" [src]="image" alt="preview image" />
+  <div class="wrapper" *ngIf="form.value.image">
+    <img [src]="image" alt="preview image" />
+  </div>
   <button mat-button type="button" (click)="fileupload.click()">Upload Image</button>
 </form>
 
