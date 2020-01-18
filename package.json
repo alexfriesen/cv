@@ -8,7 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng deploy --cname=cv.alexfriesen.net"
+    "version": "node version.js && git add ./src/environments/version.ts",
+    "postversion": "git push && git push --tags",
+    "deploy": "ng deploy --cname=cv.alexfriesen.net",
+    "deploy:patch": "npm version patch && npm run deploy",
+    "deploy:minor": "npm version minor && npm run deploy",
+    "deploy:major": "npm version major && npm run deploy"
   },
   "license": "MIT",
   "dependencies": {

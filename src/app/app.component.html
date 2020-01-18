@@ -43,11 +43,23 @@
   </mat-drawer>
 
   <mat-drawer-content class="wrapper">
+
     <div class="page" *ngIf="data">
       <app-container [data]="data.container"></app-container>
     </div>
-  </mat-drawer-content>
 
+    <button mat-fab color="primary" class="info" [matMenuTriggerFor]="menu">
+      <mat-icon>info</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="true">
+      <div class="info-pannel">
+        <p>I hope this website will help you to get your dreamjob! Good Luck!</p>
+        
+        <p>Made with &hearts; by <a href="https://github.com/alexfriesen">Alex Friesen</a></p>
+      </div>
+    </mat-menu>
+
+  </mat-drawer-content>
 
 </mat-drawer-container>
 

@@ -25,6 +25,7 @@
 
   height: 100%;
   overflow: auto;
+  background: linear-gradient(180deg, rgba(63, 71, 171, .8) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .page {
@@ -51,6 +52,16 @@
 
 .toolbar {
   justify-content: space-between;
+}
+
+.info {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+}
+
+.info-pannel {
+  padding: 4px 32px;
 }
 
 @media print {

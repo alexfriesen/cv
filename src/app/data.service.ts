@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { VERSION } from 'src/environments/version';
 import { Theme } from './models/theme';
 import { Container } from './models/container';
 import { ContainerFactory } from './models/container-factory';
@@ -68,7 +68,7 @@ export class DataService {
     const data = this.getData();
 
     const exportPayload = {
-      version: environment.version,
+      version: VERSION.version,
       data,
     };
 
