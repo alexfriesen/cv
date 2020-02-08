@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="toolbar">
-  <span>CV Pimp</span>
+  <span>CV Pimp<sub>beta</sub></span>
 
   <div class="actions">
 
@@ -44,7 +44,7 @@
 
   <mat-drawer-content class="wrapper">
 
-    <div class="page" *ngIf="data">
+    <div class="page mat-elevation-z8" *ngIf="data">
       <app-container [data]="data.container"></app-container>
     </div>
 
