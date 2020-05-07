@@ -48,13 +48,13 @@
       <app-container [data]="data.container"></app-container>
     </div>
 
-    <button mat-fab color="primary" class="info" [matMenuTriggerFor]="menu">
+    <button mat-fab color="primary" class="info hidden-print" [matMenuTriggerFor]="menu">
       <mat-icon>info</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="true">
       <div class="info-pannel">
         <p>I hope this website will help you to get your dreamjob! Good Luck!</p>
-        
+
         <p>Made with &hearts; by <a href="https://github.com/alexfriesen">Alex Friesen</a></p>
       </div>
     </mat-menu>

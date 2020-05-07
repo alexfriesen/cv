@@ -31,6 +31,10 @@ export class TextComponent {
     }
   }
 
+  async onRemove() {
+    this.containerService.removeItem(this.rowIndex);
+  }
+
   setItemData(data) {
     this.containerService.updateItem(this.rowIndex, data);
   }

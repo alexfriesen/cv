@@ -50,7 +50,9 @@ export class ContainerComponent {
   async onAddItem() {
     const options = await this.dialog.open(ContainerItemDialogComponent).afterClosed().toPromise();
 
-    const item = ItemFactory.prepare(options);
-    this.containerService.addItem(item);
+    if (options) {
+      const item = ItemFactory.prepare(options);
+      this.containerService.addItem(item);
+    }
   }
 }

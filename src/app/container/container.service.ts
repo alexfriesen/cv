@@ -4,7 +4,7 @@ import { DataService } from '../data.service';
 import { Container } from '../models/container';
 import { ItemType, Item } from '../models/item';
 
-function findContainerById(source: Container, id: string) {
+function findContainerById(source: Container, id: string): Container {
   if (source.id === id) {
     return source;
   }
@@ -45,6 +45,37 @@ function findAndUpdate(source: Container, id: string, data: Container) {
   }
 }
 
+function findAndRemove(source: Container, id: string) {
+
+  source.items = source.items.filter(item => {
+    if (item.type === ItemType.Container) {
+      return item.data.id !== id
+    }
+
+    return true
+  });
+
+  source.items.forEach(item => {
+    if (item.type === ItemType.Container) {
+      findAndRemove(item.data, id);
+      cleanup(item.data);
+    }
+  })
+
+  cleanup(source);
+
+}
+
+function cleanup(source: Container) {
+  source.items = source.items.filter(item => {
+    if (item.type === ItemType.Container && !item.data.items.length) {
+      return false
+    }
+
+    return true
+  });
+}
+
 @Injectable()
 export class ContainerService {
 
@@ -72,6 +103,14 @@ export class ContainerService {
     this.dataService.setData(data);
   }
 
+  remove() {
+    const data = this.dataService.getData();
+
+    findAndRemove(data.container, this.currentId);
+
+    this.dataService.setData(data);
+  }
+
   addContainer(newContainer?: Container) {
     this.addItem(new Item(ItemType.Container, new Container(newContainer)));
   }
@@ -89,5 +128,17 @@ export class ContainerService {
     container.items[rowIndex].data = data;
 
     this.update(container);
+  }
+
+  removeItem(rowIndex: number) {
+    const container = this.container;
+    container.items = container.items.filter((item, index) => rowIndex !== index);
+
+    if (container.items.length > 0) {
+      this.update(container);
+    } else {
+      this.remove()
+    }
+
   }
 }

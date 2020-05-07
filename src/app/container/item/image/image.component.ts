@@ -41,6 +41,10 @@ export class ImageComponent {
     }
   }
 
+  async onRemove() {
+    this.containerService.removeItem(this.rowIndex);
+  }
+
   private setItemData(data) {
     this.containerService.updateItem(this.rowIndex, data);
   }
