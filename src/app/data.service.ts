@@ -25,11 +25,13 @@ export class CVData {
   providedIn: 'root'
 })
 export class DataService {
-  data = new BehaviorSubject<CVData>(null);
+  data = new BehaviorSubject<CVData>(new CVData());
 
   constructor(
     private readonly http: HttpClient,
-  ) { }
+  ) {
+    this.restore()
+  }
 
   setData(data: CVData) {
     this.data.next(data);
@@ -41,19 +43,19 @@ export class DataService {
 
   restore() {
     try {
-      const draft = this.getDraft();
+      const draft = this.readDraft();
       this.import(draft);
     } catch (error) {
       this.importTemplate();
     }
   }
 
-  getDraft() {
+  readDraft() {
     const rawDraft = localStorage.getItem('draft');
     return JSON.parse(rawDraft);
   }
 
-  saveDraft() {
+  writeDraft() {
     const data = this.export();
     const serializedData = JSON.stringify(data);
 

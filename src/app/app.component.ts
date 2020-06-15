@@ -22,10 +22,9 @@ export class AppComponent {
     private readonly dataService: DataService,
     private readonly themeService: ThemeService,
   ) {
-    this.dataService.restore();
     this.dataService.data.subscribe(data => {
       this.data = data;
-      this.dataService.saveDraft();
+      this.dataService.writeDraft();
     });
   }
 

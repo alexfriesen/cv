@@ -2,15 +2,15 @@ export class Theme {
 
   highlightColor = '#3f51b5';
 
-  headlineColor = '#666';
-  headlineFontType = 'Source Sans Pro';
-  headlineFontSize = '1.6em';
+  headlineColor = '#95A5A6';
+  headlineFontType = 'Roboto';
+  headlineFontSize = '1.8em';
   headlineFontWeight = '600';
 
   headlineBorderType = 'dashed';
 
-  textColor = '#666';
-  textFontType = 'Roboto';
+  textColor = '#333';
+  textFontType = 'Source Sans Pro';
   textFontSize = '1em';
   textFontWeight = '200';
 
