@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { ThemeService } from '../theme.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class ThemeFormComponent {
+export class ThemeFormComponent implements OnDestroy {
 
   form: FormGroup;
   formSubscription: Subscription;

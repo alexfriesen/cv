@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, OnInit, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Container } from '../models/container';
@@ -12,7 +12,7 @@ import { ContainerItemDialogComponent } from './item/dialog/dialog.component';
   styleUrls: ['./container.component.scss'],
   providers: [ContainerService]
 })
-export class ContainerComponent {
+export class ContainerComponent implements OnInit, OnChanges {
 
   @Input()
   rowIndex: number;

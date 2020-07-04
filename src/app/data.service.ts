@@ -30,7 +30,7 @@ export class DataService {
   constructor(
     private readonly http: HttpClient,
   ) {
-    this.restore()
+    this.restore();
   }
 
   setData(data: CVData) {

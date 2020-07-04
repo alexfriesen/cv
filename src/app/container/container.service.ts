@@ -49,10 +49,10 @@ function findAndRemove(source: Container, id: string) {
 
   source.items = source.items.filter(item => {
     if (item.type === ItemType.Container) {
-      return item.data.id !== id
+      return item.data.id !== id;
     }
 
-    return true
+    return true;
   });
 
   source.items.forEach(item => {
@@ -60,7 +60,7 @@ function findAndRemove(source: Container, id: string) {
       findAndRemove(item.data, id);
       cleanup(item.data);
     }
-  })
+  });
 
   cleanup(source);
 
@@ -69,10 +69,10 @@ function findAndRemove(source: Container, id: string) {
 function cleanup(source: Container) {
   source.items = source.items.filter(item => {
     if (item.type === ItemType.Container && !item.data.items.length) {
-      return false
+      return false;
     }
 
-    return true
+    return true;
   });
 }
 
@@ -137,7 +137,7 @@ export class ContainerService {
     if (container.items.length > 0) {
       this.update(container);
     } else {
-      this.remove()
+      this.remove();
     }
 
   }
