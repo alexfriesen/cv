@@ -1,10 +1,10 @@
 import { Component, Input, HostBinding, OnInit, OnChanges } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { Container } from '../models/container';
 import { ItemFactory } from '../models/item-factory';
 import { ContainerService } from './container.service';
-import { ContainerItemDialogComponent } from './item/dialog/dialog.component';
+import { ContainerItemService } from './item/item.service';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-container',
@@ -25,8 +25,8 @@ export class ContainerComponent implements OnInit, OnChanges {
   @HostBinding('style.width') get getWidth() { return `${this.data.size || 100}%`; }
 
   constructor(
-    private readonly dialog: MatDialog,
-    private readonly containerService: ContainerService
+    private readonly containerService: ContainerService,
+    private readonly containerItemService: ContainerItemService,
   ) { }
 
   ngOnInit() {
@@ -47,12 +47,10 @@ export class ContainerComponent implements OnInit, OnChanges {
     this.containerService.addContainer(new Container(options));
   }
 
-  async onAddItem() {
-    const options = await this.dialog.open(ContainerItemDialogComponent).afterClosed().toPromise();
+  async onAddItem(type: string) {
+    const data = await this.containerItemService.edit(new Item(type));
+    const item = ItemFactory.prepare({ type, data });
 
-    if (options) {
-      const item = ItemFactory.prepare(options);
-      this.containerService.addItem(item);
-    }
+    this.containerService.addItem(item);
   }
 }

@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
+import { ItemType } from 'src/app/models/item';
 import { Timeline } from '../../../models/timeline';
-import { TimelineFormComponent } from './form/form.component';
 import { ContainerService } from '../../container.service';
+import { ContainerItemService } from '../item.service';
 
 @Component({
   selector: 'app-timeline',
@@ -18,13 +18,13 @@ export class TimelineComponent {
   data = new Timeline();
 
   constructor(
-    private readonly dialog: MatDialog,
     private readonly containerService: ContainerService,
+    private readonly containerItemService: ContainerItemService,
   ) { }
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.dialog.open(TimelineFormComponent, { data }).afterClosed().toPromise();
+    const edited = await this.containerItemService.edit({ type: ItemType.Timeline, data });
 
     if (edited) {
       this.setItemData(edited);

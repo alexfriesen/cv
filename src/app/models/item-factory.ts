@@ -6,7 +6,7 @@ import { Timeline } from './timeline';
 
 export class ItemFactory {
 
-  static prepare(item: Item) {
+  static prepare(item: Partial<Item>) {
     let itemData;
 
     switch (item.type) {

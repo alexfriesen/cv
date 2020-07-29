@@ -21,8 +21,22 @@
 </ng-container>
 
 <div class="actions hidden-print" *ngIf="data.alignment === 'column'">
-  <button mat-button color="primary" (click)="onAddItem()">
+  <button mat-button color="primary" [matMenuTriggerFor]="menu">
     <mat-icon>add_circle</mat-icon>
     Add Item
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onAddItem('text')">
+      <mat-icon>text_fields</mat-icon>
+      Text
+    </button>
+    <button mat-menu-item (click)="onAddItem('image')">
+      <mat-icon>image</mat-icon>
+      Image
+    </button>
+    <button mat-menu-item (click)="onAddItem('timeline')">
+      <mat-icon>list</mat-icon>
+      Timeline
+    </button>
+  </mat-menu>
 </div>

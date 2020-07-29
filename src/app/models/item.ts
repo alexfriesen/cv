@@ -9,7 +9,7 @@ export enum ItemType {
 export class Item {
 
   constructor(
-    public type = ItemType.Text,
+    public type: string | ItemType = ItemType.Text,
     public data = null
   ) { }
 

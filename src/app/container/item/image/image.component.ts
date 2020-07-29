@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-
-import { ImageFormComponent } from './form/form.component';
-import { ContainerService } from '../../container.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Image } from 'src/app/models/image';
+import { ItemType } from 'src/app/models/item';
+import { ContainerService } from '../../container.service';
+import { ContainerItemService } from '../item.service';
 
 @Component({
   selector: 'app-image',
@@ -28,13 +27,13 @@ export class ImageComponent {
 
   constructor(
     private readonly sanitizer: DomSanitizer,
-    private readonly dialog: MatDialog,
     private readonly containerService: ContainerService,
+    private readonly containerItemService: ContainerItemService,
   ) { }
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.dialog.open(ImageFormComponent, { data }).afterClosed().toPromise();
+    const edited = await this.containerItemService.edit({ type: ItemType.Image, data });
 
     if (edited) {
       this.setItemData(edited);

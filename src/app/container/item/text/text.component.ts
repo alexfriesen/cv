@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { Text } from 'src/app/models/text';
-import { TextFormComponent } from './form/form.component';
 import { ContainerService } from '../../container.service';
+import { ItemType } from 'src/app/models/item';
+import { ContainerItemService } from '../item.service';
 
 @Component({
   selector: 'app-text',
@@ -18,13 +18,13 @@ export class TextComponent {
   data = new Text();
 
   constructor(
-    private readonly dialog: MatDialog,
     private readonly containerService: ContainerService,
+    private readonly containerItemService: ContainerItemService,
   ) { }
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.dialog.open(TextFormComponent, { data }).afterClosed().toPromise();
+    const edited = await this.containerItemService.edit({ type: ItemType.Text, data });
 
     if (edited) {
       this.setItemData(edited);

@@ -7,7 +7,8 @@ import { ImageModule } from './item/image/image.module';
 import { TimelineModule } from './item/timeline/timeline.module';
 
 import { ContainerComponent } from './container.component';
-import { ContainerItemDialogComponent } from './item/dialog/dialog.component';
+
+import { ContainerItemService } from './item/item.service';
 
 @NgModule({
   imports: [
@@ -20,13 +21,12 @@ import { ContainerItemDialogComponent } from './item/dialog/dialog.component';
   ],
   declarations: [
     ContainerComponent,
-    ContainerItemDialogComponent,
   ],
   exports: [
     ContainerComponent,
   ],
-  entryComponents: [
-    ContainerItemDialogComponent,
+  providers: [
+    ContainerItemService,
   ]
 })
 export class ContainerModule { }
