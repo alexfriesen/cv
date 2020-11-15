@@ -4,7 +4,7 @@ import { DataService } from '../data.service';
 import { Container } from '../models/container';
 import { ItemType, Item } from '../models/item';
 
-function findContainerById(source: Container, id: string): Container {
+const findContainerById = (source: Container, id: string): Container => {
   if (source.id === id) {
     return source;
   }
@@ -14,16 +14,16 @@ function findContainerById(source: Container, id: string): Container {
       return item.data;
     }
 
-    if (item.type === ItemType.Container) {
+    if (item.type === ItemType.container) {
       const result = findContainerById(item.data, id);
       if (result) {
         return result;
       }
     }
   }
-}
+};
 
-function findAndUpdate(source: Container, id: string, data: Container) {
+const findAndUpdate = (source: Container, id: string, data: Container) => {
   if (source.id === id) {
 
     Object.assign(source, data);
@@ -31,7 +31,7 @@ function findAndUpdate(source: Container, id: string, data: Container) {
   } else {
 
     source.items.forEach(item => {
-      if (item.type === ItemType.Container) {
+      if (item.type === ItemType.container) {
 
         if (item.data.id === id) {
           item.data = data;
@@ -43,12 +43,12 @@ function findAndUpdate(source: Container, id: string, data: Container) {
     });
 
   }
-}
+};
 
-function findAndRemove(source: Container, id: string) {
+const findAndRemove = (source: Container, id: string) => {
 
   source.items = source.items.filter(item => {
-    if (item.type === ItemType.Container) {
+    if (item.type === ItemType.container) {
       return item.data.id !== id;
     }
 
@@ -56,7 +56,7 @@ function findAndRemove(source: Container, id: string) {
   });
 
   source.items.forEach(item => {
-    if (item.type === ItemType.Container) {
+    if (item.type === ItemType.container) {
       findAndRemove(item.data, id);
       cleanup(item.data);
     }
@@ -64,17 +64,17 @@ function findAndRemove(source: Container, id: string) {
 
   cleanup(source);
 
-}
+};
 
-function cleanup(source: Container) {
+const cleanup = (source: Container) => {
   source.items = source.items.filter(item => {
-    if (item.type === ItemType.Container && !item.data.items.length) {
+    if (item.type === ItemType.container && !item.data.items.length) {
       return false;
     }
 
     return true;
   });
-}
+};
 
 @Injectable()
 export class ContainerService {
@@ -112,7 +112,7 @@ export class ContainerService {
   }
 
   addContainer(newContainer?: Container) {
-    this.addItem(new Item(ItemType.Container, new Container(newContainer)));
+    this.addItem(new Item(ItemType.container, new Container(newContainer)));
   }
 
   addItem(data: Item) {

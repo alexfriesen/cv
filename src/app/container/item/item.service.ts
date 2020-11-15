@@ -17,15 +17,15 @@ export class ContainerItemService {
 
     let dialog: any = TextFormComponent;
     switch (item.type) {
-      case ItemType.Text:
+      case ItemType.text:
         dialog = TextFormComponent;
         break;
 
-      case ItemType.Image:
+      case ItemType.image:
         dialog = ImageFormComponent;
         break;
 
-      case ItemType.Timeline:
+      case ItemType.timeline:
         dialog = TimelineFormComponent;
         break;
     }

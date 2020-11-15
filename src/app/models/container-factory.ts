@@ -8,7 +8,7 @@ export class ContainerFactory {
 
     if (data.items) {
       data.items = data.items.map(item => {
-        if (item.type === ItemType.Container) {
+        if (item.type === ItemType.container) {
           item.data = ContainerFactory.prepare(item.data);
         }
         return ItemFactory.prepare(item);

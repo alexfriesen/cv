@@ -33,7 +33,7 @@ export class ImageComponent {
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.containerItemService.edit({ type: ItemType.Image, data });
+    const edited = await this.containerItemService.edit({ type: ItemType.image, data });
 
     if (edited) {
       this.setItemData(edited);

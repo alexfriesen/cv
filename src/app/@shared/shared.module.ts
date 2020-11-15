@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from './material.module';
+import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
+import { PrivacyDialogModule } from './privacy-dialog/privacy-dialog.module';
 
 @NgModule({
   imports: [
@@ -12,6 +14,8 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
 
     MaterialModule,
+    ConfirmDialogModule,
+    PrivacyDialogModule,
   ],
   exports: [
     FormsModule,

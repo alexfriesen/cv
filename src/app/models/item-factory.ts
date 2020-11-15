@@ -11,19 +11,19 @@ export class ItemFactory {
 
     switch (item.type) {
 
-      case ItemType.Container:
+      case ItemType.container:
         itemData = new Container(item.data);
         break;
 
-      case ItemType.Image:
+      case ItemType.image:
         itemData = new Image(item.data);
         break;
 
-      case ItemType.Text:
+      case ItemType.text:
         itemData = new Text(item.data);
         break;
 
-      case ItemType.Timeline:
+      case ItemType.timeline:
         itemData = new Timeline(item.data);
         break;
 

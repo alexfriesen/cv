@@ -1,14 +1,18 @@
 <mat-toolbar color="primary" class="toolbar">
-  <span>CV Pimp<sub>beta</sub></span>
+  <span>CV Builder<sub>beta</sub></span>
 
   <div class="actions">
 
-    <button mat-icon-button (click)="sidebarOpen = !sidebarOpen" matTooltip="Appearance Options">
-      <mat-icon>palette</mat-icon>
-    </button>
+    <mat-slide-toggle color="accent" [checked]="useStorage | async" (change)="onUseStorageChanged($event)">
+      Autosave Draft
+    </mat-slide-toggle>
 
     <button mat-icon-button [matMenuTriggerFor]="importExportMenu" matTooltip="Import/Export Data">
       <mat-icon>import_export</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="sidebarOpen = !sidebarOpen" matTooltip="Appearance Options">
+      <mat-icon>palette</mat-icon>
     </button>
 
     <mat-menu #importExportMenu="matMenu">

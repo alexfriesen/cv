@@ -24,7 +24,7 @@ export class TextComponent {
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.containerItemService.edit({ type: ItemType.Text, data });
+    const edited = await this.containerItemService.edit({ type: ItemType.text, data });
 
     if (edited) {
       this.setItemData(edited);

@@ -1,5 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Observable } from 'rxjs';
 import { saveAs } from 'file-saver';
 
 import { DataService, CVData } from './data.service';
@@ -14,6 +16,7 @@ import { TemplateDialogComponent } from './template/dialog/dialog.component';
 export class AppComponent implements AfterViewInit {
 
   data: CVData;
+  useStorage: Observable<boolean>;
 
   sidebarOpen = false;
 
@@ -22,6 +25,7 @@ export class AppComponent implements AfterViewInit {
     private readonly dataService: DataService,
     private readonly themeService: ThemeService,
   ) {
+    this.useStorage = this.dataService.persistentStorage.asObservable();
     this.dataService.data.subscribe(data => {
       this.data = data;
       this.dataService.writeDraft();
@@ -62,6 +66,14 @@ export class AppComponent implements AfterViewInit {
 
   onOpenTemplates() {
     this.dialog.open(TemplateDialogComponent);
+  }
+
+  onUseStorageChanged(change: MatSlideToggleChange) {
+    if (change.checked) {
+      this.dataService.enableStorage();
+    } else {
+      this.dataService.disableStorage();
+    }
   }
 
   private readFileContent(file: File): Promise<any> {

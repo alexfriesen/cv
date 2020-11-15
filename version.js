@@ -5,7 +5,7 @@ const { writeFileSync } = require('fs-extra');
 
 const file = resolve(__dirname, 'src', 'environments', 'version.ts');
 writeFileSync(file,
-  `/* tslint:disable */
+  `/* eslint-disable */
 // IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
 export const VERSION = ${JSON.stringify({ version }, null, 4)};
 `, { encoding: 'utf-8' });

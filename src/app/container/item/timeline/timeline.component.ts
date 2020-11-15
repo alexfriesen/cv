@@ -24,7 +24,7 @@ export class TimelineComponent {
 
   async onEdit() {
     const data = this.data;
-    const edited = await this.containerItemService.edit({ type: ItemType.Timeline, data });
+    const edited = await this.containerItemService.edit({ type: ItemType.timeline, data });
 
     if (edited) {
       this.setItemData(edited);
