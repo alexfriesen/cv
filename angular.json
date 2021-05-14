@@ -149,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "cv"
+  "defaultProject": "cv",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
