@@ -6,3 +6,17 @@ section {
   display: flex;
   flex-direction: column;
 }
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+}
+
+.border-preview {
+  border-width: 2px;
+  border-color: black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}

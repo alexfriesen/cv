@@ -9,9 +9,9 @@
   <div cdkDropList class="items" (cdkDropListDropped)="onDrop($event)" formArrayName="items">
     <div cdkDrag cdkDragLockAxis="y" class="item" *ngFor="let form of itemsForm.controls; let i = index">
 
-      <div cdkDragHandle class="handle" matTooltip="Move">
-        <mat-icon>drag_indicator</mat-icon>
-      </div>
+      <button mat-icon-button cdkDragHandle class="handle" matTooltip="Move">
+        <mat-icon color="accent">drag_indicator</mat-icon>
+      </button>
       <div [formGroupName]="i">
         <mat-form-field>
           <input matInput type="text" placeholder="Time" formControlName="time">
@@ -25,7 +25,7 @@
         </textarea>
         </mat-form-field>
       </div>
-      <button mat-icon-button matTooltip="Remove" (click)="onRemoveItem(i)">
+      <button mat-icon-button color="warn" matTooltip="Remove" (click)="onRemoveItem(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
