@@ -1,3 +1,5 @@
+@use "sass:math";
+
 :host {
   position: relative;
   display: block;
@@ -60,8 +62,8 @@ ul li.timespan {
   &::before {
     content: "";
     position: absolute;
-    top: $bubbleSize;
-    left: -(($bubbleSize / 2) + 1);
+    top: $bubbleSize + 2;
+    left: -(math.div($bubbleSize, 2) + 1);
 
     width: $bubbleSize;
     height: $bubbleSize;
