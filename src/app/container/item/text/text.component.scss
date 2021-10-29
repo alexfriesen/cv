@@ -36,5 +36,10 @@ p {
   font-size: var(--textFontSize);
   color: var(--textColor);
 
-  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-line;
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
 }
