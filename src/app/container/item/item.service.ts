@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 
-import { ItemType, Item } from 'src/app/models/item';
+import { ItemType, Item } from '../../models/item';
 import { TextFormComponent } from './text/form/form.component';
 import { ImageFormComponent } from './image/form/form.component';
 import { TimelineFormComponent } from './timeline/form/form.component';
@@ -30,7 +31,7 @@ export class ContainerItemService {
         break;
     }
 
-    const data = await this.dialog.open(dialog, { data: item.data }).afterClosed().toPromise();
+    const data = await firstValueFrom(this.dialog.open(dialog, { data: item.data }).afterClosed());
     if (!data) return item.data;
 
     return data;

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
-import { VERSION } from 'src/environments/version';
+import { VERSION } from '../environments/version';
 import { Theme } from './models/theme';
 import { Container } from './models/container';
 import { ContainerFactory } from './models/container-factory';
@@ -109,7 +109,7 @@ export class DataService {
   }
 
   async importTemplate(name = 'simple') {
-    const templateData = await this.http.get(`assets/templates/${name}.json`).toPromise();
+    const templateData = await firstValueFrom(this.http.get(`assets/templates/${name}.json`));
     this.import(templateData);
   }
 
