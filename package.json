@@ -10,11 +10,7 @@
     "e2e": "ng e2e",
     "update": "ng update @angular/cli @angular/core @angular/material @angular-eslint/schematics",
     "version": "node scripts/version.js && git add ./src/environments/version.ts",
-    "postversion": "git push && git push --tags",
-    "deploy": "ng deploy --cname=cv.alexfriesen.net",
-    "deploy:patch": "npm version patch && npm run deploy",
-    "deploy:minor": "npm version minor && npm run deploy",
-    "deploy:major": "npm version major && npm run deploy"
+    "postversion": "git push && git push --tags"
   },
   "license": "MIT",
   "dependencies": {
@@ -52,7 +48,6 @@
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
-    "angular-cli-ghpages": "^1.0.0-rc.2",
     "eslint": "^8.1.0",
     "eslint-plugin-import": "^2.24.0",
     "eslint-plugin-jsdoc": "^37.0.3",
