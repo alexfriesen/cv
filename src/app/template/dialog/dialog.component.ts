@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DataService } from 'src/app/data.service';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-template-dialog',

@@ -11,10 +11,6 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 export class TimelineFormComponent {
   form: FormGroup;
 
-  get itemsForm() {
-    return this.form.get('items') as FormArray;
-  }
-
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
@@ -33,6 +29,10 @@ export class TimelineFormComponent {
     if (this.itemsForm.length > 1) {
       this.createItemForm();
     }
+  }
+
+  get itemsForm() {
+    return this.form.get('items') as FormArray;
   }
 
   onAddItem(data?) {

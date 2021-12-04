@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Text } from 'src/app/models/text';
+import { Text, ItemType } from '../../../models';
 import { ContainerService } from '../../container.service';
-import { ItemType } from 'src/app/models/item';
 import { ContainerItemService } from '../item.service';
 
 @Component({

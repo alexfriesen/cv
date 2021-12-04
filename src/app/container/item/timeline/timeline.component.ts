@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ItemType } from 'src/app/models/item';
-import { Timeline } from '../../../models/timeline';
+import { ItemType, Timeline } from '../../../models';
 import { ContainerService } from '../../container.service';
 import { ContainerItemService } from '../item.service';
 

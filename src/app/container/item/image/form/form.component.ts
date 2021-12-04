@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Image } from 'src/app/models/image';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Image } from '../../../../models/image';
 
 @Component({
   selector: 'app-image-form',
@@ -12,13 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ImageFormComponent {
   form: FormGroup;
-
-  get image() {
-    if (this.form.value.image) {
-      return this.sanitizer.bypassSecurityTrustUrl(this.form.value.image);
-    }
-    return null;
-  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: Image,
@@ -31,6 +24,13 @@ export class ImageFormComponent {
       style: new FormControl(data.style),
       image: new FormControl(data.image),
     });
+  }
+
+  get image() {
+    if (this.form.value.image) {
+      return this.sanitizer.bypassSecurityTrustUrl(this.form.value.image);
+    }
+    return null;
   }
 
   async onUpload(event) {

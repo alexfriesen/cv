@@ -81,6 +81,10 @@ export class ContainerService {
 
   currentId: string;
 
+  constructor(
+    private readonly dataService: DataService
+  ) { }
+
   get items() {
     const data = this.container;
     return data.items;
@@ -90,10 +94,6 @@ export class ContainerService {
     const data = this.dataService.getData();
     return findContainerById(data.container, this.currentId);
   }
-
-  constructor(
-    private readonly dataService: DataService
-  ) { }
 
   update(container: Container) {
     const data = this.dataService.getData();

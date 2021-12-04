@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { Theme } from 'src/app/models/theme';
+import { Theme } from '../../models/theme';
 import { ThemeService } from '../theme.service';
 
 @Component({

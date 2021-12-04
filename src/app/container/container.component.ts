@@ -1,10 +1,10 @@
 import { Component, Input, HostBinding, OnInit, OnChanges } from '@angular/core';
 
+import { Item } from '../models/item';
 import { Container } from '../models/container';
 import { ItemFactory } from '../models/item-factory';
 import { ContainerService } from './container.service';
 import { ContainerItemService } from './item/item.service';
-import { Item } from '../models/item';
 
 @Component({
   selector: 'app-container',
@@ -20,14 +20,17 @@ export class ContainerComponent implements OnInit, OnChanges {
   @Input()
   data: Container;
 
-  @HostBinding('class.row') get isRow() { return this.data.alignment === 'row'; }
-  @HostBinding('class.column') get isColumn() { return this.data.alignment === 'column'; }
-  @HostBinding('style.width') get getWidth() { return `${this.data.size || 100}%`; }
-
   constructor(
     private readonly containerService: ContainerService,
     private readonly containerItemService: ContainerItemService,
   ) { }
+
+  @HostBinding('class.row')
+  get isRow() { return this.data.alignment === 'row'; }
+  @HostBinding('class.column')
+  get isColumn() { return this.data.alignment === 'column'; }
+  @HostBinding('style.width')
+  get getWidth() { return `${this.data.size || 100}%`; }
 
   ngOnInit() {
     this.containerService.currentId = this.data.id;

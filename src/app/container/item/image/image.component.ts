@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Image } from 'src/app/models/image';
-import { ItemType } from 'src/app/models/item';
+import { Image, ItemType } from '../../../models';
 import { ContainerService } from '../../container.service';
 import { ContainerItemService } from '../item.service';
 
@@ -18,18 +17,18 @@ export class ImageComponent {
   @Input()
   data = new Image();
 
+  constructor(
+    private readonly sanitizer: DomSanitizer,
+    private readonly containerService: ContainerService,
+    private readonly containerItemService: ContainerItemService,
+  ) { }
+
   get image() {
     if (this.data) {
       return this.sanitizer.bypassSecurityTrustResourceUrl(this.data.image);
     }
     return null;
   }
-
-  constructor(
-    private readonly sanitizer: DomSanitizer,
-    private readonly containerService: ContainerService,
-    private readonly containerItemService: ContainerItemService,
-  ) { }
 
   async onEdit() {
     const data = this.data;
