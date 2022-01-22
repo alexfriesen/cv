@@ -28,7 +28,7 @@
     "@angular/router": "^13.0.3",
     "@angular/service-worker": "^13.0.3",
     "file-saver": "^2.0.5",
-    "nanoid": "^3.1.25",
+    "nanoid": "^3.1.31",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
