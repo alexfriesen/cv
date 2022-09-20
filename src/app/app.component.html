@@ -48,8 +48,8 @@
 
   <mat-drawer-content class="wrapper">
 
-    <div class="page typography mat-elevation-z8" *ngIf="data">
-      <app-container [data]="data.container"></app-container>
+    <div class="page typography mat-elevation-z8">
+      <app-page></app-page>
     </div>
 
     <button mat-fab color="primary" class="info hidden-print" [matMenuTriggerFor]="menu">
@@ -57,8 +57,6 @@
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="true">
       <div class="info-pannel">
-        <p>Good Luck with your application!</p>
-
         <p>Made with &hearts; by <a href="https://alexfriesen.net/">Alex Friesen</a></p>
       </div>
     </mat-menu>

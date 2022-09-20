@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../@shared/shared.module';
-import { TemplateDialogComponent } from './dialog/dialog.component';
+import { TextComponent } from './text.component';
+import { TextFormComponent } from './form/form.component';
 
 @NgModule({
     imports: [
@@ -10,10 +11,11 @@ import { TemplateDialogComponent } from './dialog/dialog.component';
         SharedModule,
     ],
     declarations: [
-        TemplateDialogComponent,
+        TextComponent,
+        TextFormComponent,
     ],
     exports: [
-        TemplateDialogComponent,
+        TextComponent
     ]
 })
-export class TemplateModule { }
+export class TextModule { }

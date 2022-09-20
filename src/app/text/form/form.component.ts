@@ -20,8 +20,8 @@ export class TextFormComponent {
       };
     }
     this.form = new FormGroup({
-      headline: new FormControl(data.headline),
-      description: new FormControl(data.description),
+      headline: new FormControl<string>(data.headline),
+      description: new FormControl<string>(data.description),
     });
   }
 

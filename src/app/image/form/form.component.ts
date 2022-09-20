@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Image } from '../../../../models/image';
+import { Image } from '../../models/image';
 
 @Component({
   selector: 'app-image-form',
@@ -21,8 +21,8 @@ export class ImageFormComponent {
       data = new Image();
     }
     this.form = new FormGroup({
-      style: new FormControl(data.style),
-      image: new FormControl(data.image),
+      style: new FormControl<string>(data.style),
+      image: new FormControl<string>(data.image),
     });
   }
 
@@ -47,7 +47,7 @@ export class ImageFormComponent {
     });
   }
 
-  private readFileContent(file: File): Promise<any> {
+  private readFileContent(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
 

@@ -22,7 +22,7 @@ export class TimelineFormComponent {
     }
 
     this.form = new FormGroup({
-      headline: new FormControl(data.headline),
+      headline: new FormControl<string>(data.headline),
       items: new FormArray(data.items.map(item => this.createItemForm(item))),
     });
 
@@ -50,9 +50,9 @@ export class TimelineFormComponent {
     }
 
     return new FormGroup({
-      name: new FormControl(data.name),
-      description: new FormControl(data.description),
-      time: new FormControl(data.time)
+      name: new FormControl<string>(data.name),
+      description: new FormControl<string>(data.description),
+      time: new FormControl<string>(data.time),
     });
   }
 

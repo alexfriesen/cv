@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { createStore, setProps, withProps } from '@ngneat/elf';
 
-import { DataService } from '../data.service';
 import { Theme } from '../models/theme';
 
 @Injectable({
@@ -8,16 +8,17 @@ import { Theme } from '../models/theme';
 })
 export class ThemeService {
 
-  constructor(
-    private readonly dataService: DataService
-  ) { }
+  store = createStore(
+    { name: 'theme' },
+    withProps<Theme>(new Theme())
+  );
 
   applyTheme() {
     this.updateTheme(this.getTheme());
   }
 
   getTheme() {
-    return this.dataService.getData().theme;
+    return this.store.getValue();
   }
 
   reset() {
@@ -28,19 +29,10 @@ export class ThemeService {
     const element = document.querySelector<HTMLElement>('.page');
 
     Object.keys(theme).forEach((key) => {
-      element.style.setProperty(`--${key}`, theme[key]);
+      element?.style?.setProperty(`--${key}`, theme[key]);
     });
 
-    const data = this.dataService.getData();
-
-    const updated = {
-      ...data,
-
-      theme,
-    };
-
-    this.dataService.setData(updated);
-
+    this.store.update(setProps(theme));
   }
 
 }

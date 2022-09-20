@@ -1,26 +1,34 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, combineLatest, firstValueFrom } from 'rxjs';
+import { createStore } from '@ngneat/elf';
+import {
+  addEntities,
+  deleteEntities,
+  getAllEntities,
+  setEntities,
+  updateAllEntities,
+  updateEntities,
+  withEntities,
+} from '@ngneat/elf-entities';
 
 import { VERSION } from '../environments/version';
-import { Theme } from './models/theme';
-import { Container } from './models/container';
-import { ContainerFactory } from './models/container-factory';
-import { PrivacyDialogComponent } from './@shared/privacy-dialog/privacy-dialog.component';
+import { Theme, Content, Column } from './models';
+import { ThemeService } from './theme/theme.service';
+
 
 export class CVData {
-
   theme = new Theme();
-  container = new Container();
+  content: Content[] = [];
+  columns: Column[] = [];
 
   constructor(data?) {
     if (!data) return this;
 
     this.theme = new Theme(data.theme);
-    this.container = ContainerFactory.prepare(data.container);
+    this.content = data.content || [];
+    this.columns = data.columns || [];
   }
-
 }
 
 @Injectable({
@@ -28,10 +36,13 @@ export class CVData {
 })
 export class DataService {
   persistentStorage = new BehaviorSubject<boolean>(undefined);
-  data = new BehaviorSubject<CVData>(new CVData());
+
+  readonly themeService = inject(ThemeService);
+
+  readonly contentStore = createStore({ name: 'content' }, withEntities<Content>());
+  readonly columnStore = createStore({ name: 'columns' }, withEntities<Column>());
 
   constructor(
-    private readonly dialog: MatDialog,
     private readonly http: HttpClient,
   ) {
     if (this.readDraft()) {
@@ -40,14 +51,45 @@ export class DataService {
     }
 
     this.restore();
+
+    combineLatest([
+      this.themeService.store,
+      this.contentStore,
+      this.columnStore,
+    ]).subscribe(data => {
+      this.writeDraft();
+    });
+  }
+
+  editContent(id: string, data: any) {
+    this.contentStore.update(updateEntities(id, { data }));
+  }
+
+  addContent(column: Column, content: Content) {
+    this.contentStore.update(addEntities(content));
+    this.columnStore.update(updateEntities(column.id, { content: [...column.content, content.id] }));
+  }
+
+  removeContent(id: string) {
+    this.contentStore.update(deleteEntities(id));
+    this.columnStore.update(updateAllEntities((column) => {
+      console.log(column.content, id);
+      return ({ ...column, content: column.content.filter(value => value !== id) });
+    }));
   }
 
   setData(data: CVData) {
-    this.data.next(data);
+    this.themeService.updateTheme(data.theme);
+    this.contentStore.update(setEntities(data.content));
+    this.columnStore.update(setEntities(data.columns));
   }
 
   getData() {
-    return this.data.getValue();
+    return {
+      theme: this.themeService.getTheme(),
+      content: this.contentStore.query(getAllEntities()),
+      columns: this.columnStore.query(getAllEntities()),
+    };
   }
 
   restore() {
@@ -55,6 +97,7 @@ export class DataService {
       const draft = this.readDraft();
       this.import(draft);
     } catch (error) {
+      console.error(error);
       this.importTemplate();
     }
   }
@@ -77,30 +120,21 @@ export class DataService {
 
     const exportPayload = {
       version: VERSION.version,
-      data,
+      ...data,
     };
 
     return exportPayload;
   }
 
   import(importData) {
-    const data = new CVData(importData.data);
+    const data = new CVData(importData);
 
     this.setData(data);
   }
 
   enableStorage() {
-    this.persistentStorage.next(undefined);
-    this.dialog.open(PrivacyDialogComponent)
-      .afterClosed()
-      .subscribe(result => {
-        if (result === true) {
-          this.persistentStorage.next(true);
-          this.writeDraft();
-        } else {
-          this.persistentStorage.next(false);
-        }
-      });
+    this.persistentStorage.next(true);
+    this.writeDraft();
   }
 
   disableStorage() {

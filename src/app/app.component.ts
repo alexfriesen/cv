@@ -11,13 +11,11 @@ import { TemplateDialogComponent } from './template/dialog/dialog.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
 
-  data: CVData;
   useStorage: Observable<boolean>;
-
   sidebarOpen = false;
 
   constructor(
@@ -26,10 +24,6 @@ export class AppComponent implements AfterViewInit {
     private readonly themeService: ThemeService,
   ) {
     this.useStorage = this.dataService.persistentStorage.asObservable();
-    this.dataService.data.subscribe(data => {
-      this.data = data;
-      this.dataService.writeDraft();
-    });
   }
 
   ngAfterViewInit() {

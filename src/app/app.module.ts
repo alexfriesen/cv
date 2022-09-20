@@ -6,9 +6,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { PageComponent } from './page/page.component';
 import { SharedModule } from './@shared/shared.module';
 import { ThemeModule } from './theme/theme.module';
-import { ContainerModule } from './container/container.module';
 import { TemplateModule } from './template/template.module';
 import { environment } from '../environments/environment';
 
@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
     SharedModule,
     ThemeModule,
     TemplateModule,
-    ContainerModule,
+    PageComponent,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

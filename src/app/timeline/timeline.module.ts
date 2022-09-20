@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../@shared/shared.module';
-import { TemplateDialogComponent } from './dialog/dialog.component';
+import { TimelineComponent } from './timeline.component';
+import { TimelineFormComponent } from './form/form.component';
 
 @NgModule({
     imports: [
@@ -10,10 +11,11 @@ import { TemplateDialogComponent } from './dialog/dialog.component';
         SharedModule,
     ],
     declarations: [
-        TemplateDialogComponent,
+        TimelineComponent,
+        TimelineFormComponent,
     ],
     exports: [
-        TemplateDialogComponent,
+        TimelineComponent
     ]
 })
-export class TemplateModule { }
+export class TimelineModule { }

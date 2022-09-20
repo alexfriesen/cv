@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
