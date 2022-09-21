@@ -1,0 +1,10 @@
+<ng-container *ngFor="let column of columns$ | async; trackBy: trackByFn">
+  <app-column [column]="column"></app-column>
+</ng-container>
+
+<div class="actions hidden-print">
+  <button mat-button color="primary" (click)="addColumn()">
+    <mat-icon>add_circle</mat-icon>
+    Add Column
+  </button>
+</div>

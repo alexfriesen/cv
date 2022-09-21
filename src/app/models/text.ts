@@ -1,5 +1,5 @@
 export class Text {
-  public headline = 'New Text Item';
+  public headline = 'New Text';
   public description = '';
 
   constructor(data?) {

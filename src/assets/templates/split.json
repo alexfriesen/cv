@@ -1,104 +1,73 @@
 {
-  "version": "0.2.0",
-  "data": {
-    "container": {
-      "alignment": "column",
-      "items": [
-        {
-          "type": "container",
-          "data": {
-            "alignment": "row",
-            "items": [
-              {
-                "type": "container",
-                "data": {
-                  "alignment": "column",
-                  "size": 60,
-                  "items": [
-                    {
-                      "type": "image",
-                      "data": {
-                        "style": "circle",
-                        "image": "data:image/png;base64,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"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "container",
-                "data": {
-                  "alignment": "column",
-                  "items": [
-                    {
-                      "type": "text",
-                      "data": {
-                        "headline": "Horst Karacho",
-                        "description": "My name is Horst :)"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+  "version": "0.7.0",
+  "content": [
+    {
+      "id": "z5LllRt-NoiGkoisa_2tN",
+      "height": 12,
+      "type": "image",
+      "data": {
+        "style": "circle",
+        "image": "data:image/png;base64,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"
+      }
+    },
+    {
+      "id": "QfAFa0golVKIImL764OCO",
+      "height": 12,
+      "type": "text",
+      "data": {
+        "headline": "Horst Karacho",
+        "description": "My name is Horst :)"
+      }
+    },
+    {
+      "id": "j3ofcLmYExoG0AS_yoRq0",
+      "type": "text",
+      "data": {
+        "headline": "Lorem Ipsum",
+        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+      }
+    },
+    {
+      "id": "qkx4WlS5XkUZcfTpy9rN0",
+      "type": "timeline",
+      "data": {
+        "headline": "Education",
+        "items": [
+          {
+            "name": "School",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+            "time": "2000"
+          },
+          {
+            "name": "Another School",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+            "time": "2005"
+          },
+          {
+            "name": "More Schools",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+            "time": 2020
           }
-        },
-        {
-          "type": "container",
-          "data": {
-            "alignment": "row",
-            "items": [
-              {
-                "type": "container",
-                "data": {
-                  "alignment": "column",
-                  "size": 60,
-                  "items": [
-                    {
-                      "type": "text",
-                      "data": {
-                        "headline": "Lorem Ipsum",
-                        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "container",
-                "data": {
-                  "alignment": "column",
-                  "items": [
-                    {
-                      "type": "timeline",
-                      "data": {
-                        "headline": "Education",
-                        "items": [
-                          {
-                            "name": "School",
-                            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-                            "time": "2000"
-                          },
-                          {
-                            "name": "Another School",
-                            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-                            "time": "2005"
-                          },
-                          {
-                            "name": "More Schools",
-                            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
-                            "time": "2020"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
+        ]
+      }
+    }
+  ],
+  "columns": [
+    {
+      "id": "mOceUBR-oB5xEzfstycFh",
+      "width": 40,
+      "content": [
+        "z5LllRt-NoiGkoisa_2tN",
+        "j3ofcLmYExoG0AS_yoRq0"
+      ]
+    },
+    {
+      "id": "rsnB6FA8StFNllET8riaj",
+      "width": 60,
+      "content": [
+        "QfAFa0golVKIImL764OCO",
+        "qkx4WlS5XkUZcfTpy9rN0"
       ]
     }
-  }
+  ]
 }

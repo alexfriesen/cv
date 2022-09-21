@@ -1,0 +1,22 @@
+<app-content *ngFor="let content of content$ | async" [content]="content"></app-content>
+
+<div class="actions hidden-print">
+  <button mat-button color="primary" [matMenuTriggerFor]="menu">
+    <mat-icon>add_circle</mat-icon>
+    Add Item
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onAddItem(types.text)">
+      <mat-icon>text_fields</mat-icon>
+      Text
+    </button>
+    <button mat-menu-item (click)="onAddItem(types.image)">
+      <mat-icon>image</mat-icon>
+      Image
+    </button>
+    <button mat-menu-item (click)="onAddItem(types.timeline)">
+      <mat-icon>list</mat-icon>
+      Timeline
+    </button>
+  </mat-menu>
+</div>

@@ -1,5 +1,5 @@
 export class Timeline {
-  public headline = 'New Timeline Item';
+  public headline = 'New Timeline';
   public items = [];
 
   constructor(data?) {

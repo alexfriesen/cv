@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="content.type">
+  <ng-template ngSwitchCase="image">
+    <app-image [id]="content.id" [data]="content.data"></app-image>
+  </ng-template>
+
+  <ng-template ngSwitchCase="timeline">
+    <app-timeline [id]="content.id" [data]="content.data"></app-timeline>
+  </ng-template>
+
+  <ng-template ngSwitchCase="text">
+    <app-text [id]="content.id" [data]="content.data"></app-text>
+  </ng-template>
+</ng-container>

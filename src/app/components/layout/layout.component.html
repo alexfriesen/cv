@@ -1,0 +1,26 @@
+<app-header [(sidebarOpen)]="sidebarOpen"></app-header>
+
+<mat-drawer-container class="container">
+
+  <mat-drawer class="hidden-print" mode="side" position="end" [opened]="sidebarOpen">
+    <app-theme-form>
+    </app-theme-form>
+  </mat-drawer>
+
+  <mat-drawer-content class="wrapper">
+
+    <ng-content></ng-content>
+
+    <button mat-fab color="primary" class="info hidden-print" [matMenuTriggerFor]="menu">
+      <mat-icon>info</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="true">
+      <div class="info-pannel">
+        <p>Made with &hearts; by <a href="https://alexfriesen.net/">Alex Friesen</a></p>
+      </div>
+    </mat-menu>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>
