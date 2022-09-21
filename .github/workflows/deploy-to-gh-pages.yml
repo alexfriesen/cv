@@ -5,19 +5,19 @@ on:
       - main
     tags:
       - v*
+permissions:
+  contents: write
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v3
 
       - name: Setup-Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
 
       - name: Install and Build
         run: |
@@ -25,7 +25,6 @@ jobs:
           npm run build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@4
         with:
-          BRANCH: gh-pages
           FOLDER: dist/cv
