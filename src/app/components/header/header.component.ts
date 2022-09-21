@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleModule, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { saveAs } from 'file-saver';
@@ -18,6 +19,8 @@ import { TemplateDialogComponent } from '../template-dialog/template-dialog.comp
   imports: [
     CommonModule,
     MaterialModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
   ]
 })
 export class HeaderComponent {

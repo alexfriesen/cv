@@ -1,16 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { ThemeService } from './services';
-import { MaterialModule } from './@shared/material.module';
 import { PageComponent } from './components/page/page.component';
-import { HeaderComponent } from './components/header/header.component';
-import { ThemeFormComponent } from './components/theme-form/theme-form.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { TemplateDialogComponent } from './components/template-dialog/template-dialog.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +13,13 @@ import { TemplateDialogComponent } from './components/template-dialog/template-d
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
     HttpClientModule,
 
-    HeaderComponent,
-    ThemeFormComponent,
-    ConfirmDialogComponent,
-    TemplateDialogComponent,
-
+    LayoutComponent,
     PageComponent,
+
     // TextFormComponent,
     // ImageFormComponent,
     // TimelineFormComponent,
@@ -41,13 +32,4 @@ import { TemplateDialogComponent } from './components/template-dialog/template-d
     // }),
   ]
 })
-export class AppComponent implements AfterViewInit {
-
-  sidebarOpen = false;
-
-  private readonly themeService = inject(ThemeService);
-
-  ngAfterViewInit() {
-    this.themeService.applyTheme();
-  }
-}
+export class AppComponent { }

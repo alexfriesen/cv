@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../@shared/material.module';
+import { MatRadioModule } from '@angular/material/radio';
 
+import { MaterialModule } from '../../@shared/material.module';
 import { DataService } from '../../services';
 
 @Component({
@@ -12,6 +13,7 @@ import { DataService } from '../../services';
   imports: [
     FormsModule,
     MaterialModule,
+    MatRadioModule,
   ]
 })
 export class TemplateDialogComponent {
