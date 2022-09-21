@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="toolbar hidden-print">
+  <span>CV Builder</span>
+
+  <div class="actions">
+
+    <mat-slide-toggle color="accent" [checked]="useStorage | async" (change)="onUseStorageChanged($event)">
+      Autosave Draft
+    </mat-slide-toggle>
+
+    <button mat-icon-button [matMenuTriggerFor]="importExportMenu" matTooltip="Import/Export Data">
+      <mat-icon>import_export</mat-icon>
+    </button>
+
+    <button mat-icon-button matTooltip="Appearance Options" (click)="sidebarOpenChange.emit(!sidebarOpen)">
+      <mat-icon>palette</mat-icon>
+    </button>
+
+    <mat-menu #importExportMenu="matMenu">
+      <button mat-menu-item (click)="fileupload.click()">
+        <mat-icon>unarchive</mat-icon>
+        Import Data
+      </button>
+
+      <button mat-menu-item (click)="onDownload()">
+        <mat-icon>archive</mat-icon>
+        Export Data
+      </button>
+
+      <button mat-menu-item (click)="onOpenTemplates()">
+        <mat-icon>restore_page</mat-icon>
+        Use Template
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button (click)="onPrint()" matTooltip="Print...">
+      <mat-icon>print</mat-icon>
+    </button>
+
+  </div>
+</mat-toolbar>
+
+<input class="hidden" #fileupload type="file" (change)="onUpload($event)">

@@ -1,20 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, inject } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatDialog } from '@angular/material/dialog';
 // import { ServiceWorkerModule } from '@angular/service-worker';
-import { Observable } from 'rxjs';
-import { saveAs } from 'file-saver';
 
-import { DataService, ThemeService } from './services';
+import { ThemeService } from './services';
 import { MaterialModule } from './@shared/material.module';
 import { PageComponent } from './components/page/page.component';
+import { HeaderComponent } from './components/header/header.component';
 import { ThemeFormComponent } from './components/theme-form/theme-form.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { TemplateDialogComponent } from './components/template-dialog/template-dialog.component';
-
 
 @Component({
   selector: 'app-root',
@@ -27,6 +23,7 @@ import { TemplateDialogComponent } from './components/template-dialog/template-d
     MaterialModule,
     HttpClientModule,
 
+    HeaderComponent,
     ThemeFormComponent,
     ConfirmDialogComponent,
     TemplateDialogComponent,
@@ -46,75 +43,11 @@ import { TemplateDialogComponent } from './components/template-dialog/template-d
 })
 export class AppComponent implements AfterViewInit {
 
-  useStorage: Observable<boolean>;
   sidebarOpen = false;
 
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly dataService: DataService,
-    private readonly themeService: ThemeService,
-  ) {
-    this.useStorage = this.dataService.persistentStorage.asObservable();
-  }
+  private readonly themeService = inject(ThemeService);
 
   ngAfterViewInit() {
     this.themeService.applyTheme();
   }
-
-  async onUpload(event) {
-    const target = event.target as HTMLInputElement;
-    if (!target.files || !target.files.length) {
-      return alert('Import failed');
-    }
-
-    const [file] = event.target.files;
-
-    const content = await this.readFileContent(file);
-    this.dataService.import(content);
-  }
-
-  onDownload() {
-    const content = this.dataService.export();
-
-    const blob = new Blob([JSON.stringify(content)], { type: 'text/plain' });
-
-    saveAs(blob, `cv.json`);
-  }
-
-  onPrint() {
-    window.print();
-  }
-
-  onReset() {
-    this.dataService.reset();
-  }
-
-  onOpenTemplates() {
-    this.dialog.open(TemplateDialogComponent);
-  }
-
-  onUseStorageChanged(change: MatSlideToggleChange) {
-    if (change.checked) {
-      this.dataService.enableStorage();
-    } else {
-      this.dataService.disableStorage();
-    }
-  }
-
-  private readFileContent(file: File): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-
-      fileReader.onerror = reject;
-      fileReader.onabort = reject;
-
-      fileReader.onload = (e: any) => {
-        const result = JSON.parse(e.target.result);
-        resolve(result);
-      };
-
-      fileReader.readAsText(file);
-    });
-  }
-
 }
