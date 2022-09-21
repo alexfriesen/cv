@@ -63,7 +63,10 @@ THE SOFTWARE.
 @angular/platform-browser
 MIT
 
-@angular/service-worker
+@ngneat/elf
+MIT
+
+@ngneat/elf-entities
 MIT
 
 file-saver
