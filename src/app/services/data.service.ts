@@ -92,7 +92,11 @@ export class DataService {
   restore() {
     try {
       const draft = this.readDraft();
-      this.import(draft);
+      if (draft) {
+        this.import(draft);
+      } else {
+        this.importTemplate();
+      }
     } catch (error) {
       console.error(error);
       this.importTemplate();
