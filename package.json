@@ -11,8 +11,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "update": "ng update @angular/cli @angular/core @angular/material @angular-eslint/schematics",
-    "write-version": "node scripts/version.js && git add ./src/environments/version.ts",
-    "postversion": "npm run write-version && git push && git push --tags"
+    "version": "node scripts/version.js && git add",
+    "postversion": "git push && git push --tags"
   },
   "license": "MIT",
   "dependencies": {
