@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, combineLatest, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { createStore } from '@ngneat/elf';
 import {
   addEntities,
@@ -35,14 +34,11 @@ export class CVData {
   providedIn: 'root'
 })
 export class DataService {
-  persistentStorage = new BehaviorSubject<boolean>(undefined);
-
   readonly themeService = inject(ThemeService);
 
   readonly contentStore = createStore({ name: 'content' }, withEntities<Content>());
   readonly columnStore = createStore({ name: 'columns' }, withEntities<Column>());
-
-  private readonly http = inject(HttpClient);
+  readonly persistentStorage = new BehaviorSubject<boolean>(undefined);
 
   constructor() {
     if (this.readDraft()) {
@@ -56,7 +52,7 @@ export class DataService {
       this.themeService.store,
       this.contentStore,
       this.columnStore,
-    ]).subscribe(data => {
+    ]).subscribe(() => {
       this.writeDraft();
     });
   }
@@ -144,7 +140,7 @@ export class DataService {
   }
 
   async importTemplate(name = 'simple') {
-    const templateData = await firstValueFrom(this.http.get(`assets/templates/${name}.json`));
+    const templateData = await (await fetch(`assets/templates/${name}.json`)).json();
     this.import(templateData);
   }
 

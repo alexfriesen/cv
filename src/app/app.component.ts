@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PageComponent } from './components/page/page.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
 
     LayoutComponent,
     PageComponent,
