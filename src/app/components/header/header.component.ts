@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { MatSlideToggleModule, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import {
+  MatSlideToggleModule,
+  MatSlideToggleChange,
+} from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { saveAs } from 'file-saver';
 
 import { DataService } from '../../services';
 import { MaterialModule } from '../../@shared/material.module';
 import { TemplateDialogComponent } from '../template-dialog/template-dialog.component';
-
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,7 @@ import { TemplateDialogComponent } from '../template-dialog/template-dialog.comp
     MaterialModule,
     MatToolbarModule,
     MatSlideToggleModule,
-  ]
+  ],
 })
 export class HeaderComponent {
   @Input()
@@ -55,7 +56,7 @@ export class HeaderComponent {
 
     const blob = new Blob([JSON.stringify(content)], { type: 'text/plain' });
 
-    saveAs(blob, `cv.json`);
+    this.downloadAs(blob, `cv.json`);
   }
 
   onPrint() {
@@ -94,4 +95,17 @@ export class HeaderComponent {
     });
   }
 
+  private downloadAs(blob, name) {
+    // Namespace is used to prevent conflict w/ Chrome Poper Blocker extension (Issue https://github.com/eligrey/FileSaver.js/issues/561)
+    const a = document.createElementNS(
+      'http://www.w3.org/1999/xhtml',
+      'a'
+    ) as HTMLAnchorElement;
+    a.download = name;
+    a.rel = 'noopener';
+    a.href = URL.createObjectURL(blob);
+
+    setTimeout(() => URL.revokeObjectURL(a.href), 40 /* sec */ * 1000);
+    setTimeout(() => a.click(), 0);
+  }
 }
