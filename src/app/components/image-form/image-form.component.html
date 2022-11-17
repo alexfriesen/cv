@@ -17,7 +17,7 @@
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
+  <button mat-raised-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
 </div>
 
 <input class="hidden" #fileupload type="file" (change)="onUpload($event)">

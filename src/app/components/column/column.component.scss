@@ -10,19 +10,11 @@
   border: 1px dashed transparent;
 }
 
-:host:focus,
-:host:hover,
-:host.active {
-  border-color: #ccc;
-}
-
-:host.row {
-  flex-direction: row;
-}
-
-:host.column {
-  flex-direction: column;
-}
+// :host:focus,
+// :host:hover,
+// :host.active {
+//   border-color: #ccc;
+// }
 
 .actions {
   margin: auto;

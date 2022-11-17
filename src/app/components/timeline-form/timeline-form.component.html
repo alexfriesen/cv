@@ -2,6 +2,7 @@
 
 <form mat-dialog-content [formGroup]="form">
   <mat-form-field>
+    <mat-label>Title</mat-label>
     <input matInput type="text" placeholder="Title" formControlName="headline" cdkFocusInitial>
   </mat-form-field>
 
@@ -12,15 +13,18 @@
       <button mat-icon-button cdkDragHandle class="handle" matTooltip="Move">
         <mat-icon color="accent">drag_indicator</mat-icon>
       </button>
-      <div [formGroupName]="i">
+      <div [formGroupName]="i" class="input-group">
         <mat-form-field>
+          <mat-label>Date</mat-label>
           <input matInput type="text" placeholder="Time" formControlName="time">
         </mat-form-field>
         <mat-form-field>
+          <mat-label>Title</mat-label>
           <input matInput type="text" placeholder="Name" formControlName="name">
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput placeholder="description" formControlName="description" #autosize="cdkTextareaAutosize"
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" formControlName="description" #autosize="cdkTextareaAutosize"
             cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
         </textarea>
         </mat-form-field>
@@ -39,5 +43,5 @@
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
+  <button mat-raised-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Ok</button>
 </div>
