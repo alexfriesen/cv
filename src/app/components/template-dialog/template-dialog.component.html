@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Choose your Template</h1>
+<h2 mat-dialog-title>Choose your Template</h2>
 
-<section>
+<section mat-dialog-content>
   <mat-radio-group class="group" [(ngModel)]="selection">
     <mat-radio-button value="simple">Simple Layout</mat-radio-button>
     <mat-radio-button value="split">Splitted Layout</mat-radio-button>
@@ -9,7 +9,13 @@
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" mat-dialog-close [disabled]="!selection" (click)="openTemplate(selection)">
+  <button
+    color="primary"
+    mat-raised-button
+    mat-dialog-close
+    [disabled]="!selection"
+    (click)="openTemplate(selection)"
+  >
     Ok
   </button>
 </div>
